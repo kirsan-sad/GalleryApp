@@ -1,0 +1,14 @@
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\bin\Debug\netcoreapp3.1\GalleryApp.Infrastructure.deps.json
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\bin\Debug\netcoreapp3.1\GalleryApp.Infrastructure.dll
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\obj\Debug\netcoreapp3.1\GalleryApp.Infrastructure.csprojAssemblyReference.cache
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\obj\Debug\netcoreapp3.1\GalleryApp.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\obj\Debug\netcoreapp3.1\GalleryApp.Infrastructure.AssemblyInfo.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\bin\Debug\netcoreapp3.1\GalleryApp.Infrastructure.runtimeconfig.json
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\bin\Debug\netcoreapp3.1\GalleryApp.Infrastructure.runtimeconfig.dev.json
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\obj\Debug\netcoreapp3.1\GalleryApp.Infrastructure.genruntimeconfig.cache
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\bin\Debug\netcoreapp3.1\GalleryApp.Infrastructure.pdb
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\obj\Debug\netcoreapp3.1\GalleryApp.Infrastructure.dll
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\obj\Debug\netcoreapp3.1\GalleryApp.Infrastructure.pdb
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\bin\Debug\netcoreapp3.1\GalleryApp.Domain.dll
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\bin\Debug\netcoreapp3.1\GalleryApp.Domain.pdb
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Infrastructure\obj\Debug\netcoreapp3.1\GalleryApp.Infrastructure.csproj.CopyComplete

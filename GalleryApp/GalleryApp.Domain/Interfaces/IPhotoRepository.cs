@@ -7,7 +7,7 @@ namespace GalleryApp.Domain.Interfaces
 {
     public interface IPhotoRepository : IRepository<Photo>
     {
-        ICollection<Photo> GetAllPhotoByGenre(string genre);
+        ICollection<Photo> GetAllPhotoByGenre(int genreId);
         bool TryUpload(Photo photoForLoading);
     }
 }

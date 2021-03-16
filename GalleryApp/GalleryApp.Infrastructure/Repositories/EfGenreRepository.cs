@@ -2,9 +2,11 @@
 using GalleryApp.Domain.Interfaces;
 using GalleryApp.Domain.Models;
 using GalleryApp.Infrastructure.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GalleryApp.Infrastructure.Repositories
 {
@@ -17,22 +19,22 @@ namespace GalleryApp.Infrastructure.Repositories
             _mapper = mapper;
         }
 
-        public ICollection<Genre> AllGenres()
+        public async Task<ICollection<Genre>> AllGenres()
         {
             ICollection<Genre> allGenres;
 
             using (var context = new GalleryContext())
             {
-                var allGenresEntity = from genres in context.Genres
+                var allGenresEntities = from genres in context.Genres
                                       select genres;
 
-                allGenres = _mapper.ProjectTo<Genre>(allGenresEntity).ToList();
+                allGenres = await _mapper.ProjectTo<Genre>(allGenresEntities).ToListAsync();
             }
 
             return allGenres;
         }
 
-        public bool TryCreate(Genre genreForCreate)
+        public async Task<bool> TryCreate(Genre genreForCreate)
         {
             genreForCreate = genreForCreate ?? throw new ArgumentNullException(nameof(genreForCreate));
 
@@ -40,7 +42,7 @@ namespace GalleryApp.Infrastructure.Repositories
 
             using (var context = new GalleryContext())
             {
-                var genreEntityExist = context.Genres.Any(genreEntity => genreEntity.Name == genreForCreate.Name);
+                var genreEntityExist = await context.Genres.AnyAsync(genreEntity => genreEntity.Name == genreForCreate.Name);
 
                 if (genreEntityExist == true)
                     succses = false;
@@ -48,14 +50,14 @@ namespace GalleryApp.Infrastructure.Repositories
                 {
                     var entityGenre = _mapper.Map<GenreEntity>(genreForCreate);
                     context.Genres.Add(entityGenre);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 }
             }
 
             return succses;
         }
 
-        public bool TryDelete(Genre modelForDelete)
+        public async Task<bool> TryDelete(Genre modelForDelete)
         {
             modelForDelete = modelForDelete ?? throw new ArgumentNullException(nameof(modelForDelete));
 
@@ -63,22 +65,22 @@ namespace GalleryApp.Infrastructure.Repositories
 
             using (var context = new GalleryContext())
             {
-                var genreEntityExist = context.Genres.Any(genreEntity => genreEntity.Id == modelForDelete.Index);
+                var genreEntityExist = await context.Genres.AnyAsync(genreEntity => genreEntity.Id == modelForDelete.Index);
 
                 if (!genreEntityExist)
                     succses = false;
                 else
                 {
                     var entityForDelete = _mapper.Map<GenreEntity>(modelForDelete);
-                    context.Remove(entityForDelete);
-                    context.SaveChanges();
+                    context.Genres.Remove(entityForDelete);
+                    await context.SaveChangesAsync();
                 }
             }
 
             return succses;
         }
 
-        public Genre GetById(int? id)
+        public async Task<Genre> GetById(int? id)
         {
             id = id ?? throw new ArgumentNullException(nameof(id));
 
@@ -86,7 +88,7 @@ namespace GalleryApp.Infrastructure.Repositories
 
             using (var context = new GalleryContext())
             {
-                var genreEntityExist = context.Genres.FirstOrDefault(genreEntity => genreEntity.Id == id);
+                var genreEntityExist = await context.Genres.FirstOrDefaultAsync(genreEntity => genreEntity.Id == id);
 
                 if (genreEntityExist == null)
                     return null;
@@ -99,21 +101,21 @@ namespace GalleryApp.Infrastructure.Repositories
             return result;
         }
 
-        public bool TryUpdate(Genre modelForUpdate)
+        public async Task<bool> TryUpdate(Genre modelForUpdate)
         {
             modelForUpdate = modelForUpdate ?? throw new ArgumentNullException(nameof(modelForUpdate));
             bool succses = true;
 
             using (var context = new GalleryContext())
             {
-                var genreEntityExist = context.Genres.Any(genreEntity => genreEntity.Id == modelForUpdate.Index);
+                var genreEntityExist = await context.Genres.AnyAsync(genreEntity => genreEntity.Id == modelForUpdate.Index);
 
                 if (!genreEntityExist)
                     succses = false;
                 else
                 {
                     var entityForUpdate = _mapper.Map<GenreEntity>(modelForUpdate);
-                    context.Update(entityForUpdate);
+                    context.Genres.Update(entityForUpdate);
                     context.SaveChanges();
                 }
             }

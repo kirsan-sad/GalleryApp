@@ -1,13 +1,12 @@
 ﻿using GalleryApp.Domain.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace GalleryApp.Domain.Interfaces
 {
     public interface IPhotoRepository : IRepository<Photo>
     {
-        ICollection<Photo> GetAllPhotoByGenre(int genreId);
-        bool TryUpload(Photo photoForLoading);
+        Task<ICollection<Photo>> GetAllPhotoByGenre(int? genreId);
+        Task<bool> TryUpload(Photo photoForLoading);
     }
 }

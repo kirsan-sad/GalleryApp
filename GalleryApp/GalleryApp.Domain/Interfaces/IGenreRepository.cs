@@ -1,13 +1,12 @@
 ﻿using GalleryApp.Domain.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace GalleryApp.Domain.Interfaces
 {
     public interface IGenreRepository : IRepository<Genre>
     {
-        ICollection<Genre> AllGenres();
-        bool TryCreate(Genre genreForCreate);
+        Task<ICollection<Genre>> AllGenres();
+        Task<bool> TryCreate(Genre genreForCreate);
     }
 }

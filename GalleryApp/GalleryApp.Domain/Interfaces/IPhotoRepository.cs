@@ -6,7 +6,7 @@ namespace GalleryApp.Domain.Interfaces
 {
     public interface IPhotoRepository : IRepository<Photo>
     {
-        Task<ICollection<Photo>> GetAllPhotoByGenre(int? genreId);
-        Task<bool> TryUpload(Photo photoForLoading);
+        Task<ICollection<Photo>> GetAllPhotoByGenreAsync(int? genreId);
+        Task<bool> TryUploadAsync(Photo photoForLoading);
     }
 }

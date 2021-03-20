@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GalleryApp.Domain.Interfaces;
 using GalleryApp.Infrastructure;
+using GalleryApp.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,8 @@ namespace GalleryApp.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(MappingProfile));
+            services.AddTransient<IPhotoRepository, EfPhotoRepository>();
+            services.AddTransient<IGenreRepository, EfGenreRepository>();
             services.AddControllersWithViews();
         }
 

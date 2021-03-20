@@ -11,8 +11,12 @@ namespace GalleryApp.Infrastructure
     {
         public MappingProfile()
         {
-            CreateMap<PhotoEntity, Photo>();
-            CreateMap<GenreEntity, Genre>();
+            CreateMap<PhotoEntity, Photo>()
+                .ForMember(d => d.Index, map => map.MapFrom(s => s.Id))
+                .ReverseMap();
+            CreateMap<GenreEntity, Genre>()
+                .ForMember(d => d.Index, map => map.MapFrom(s => s.Id))
+                .ReverseMap();
         }
     }
 }

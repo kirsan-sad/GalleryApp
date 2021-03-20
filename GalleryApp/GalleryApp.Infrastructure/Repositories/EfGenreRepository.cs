@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GalleryApp.Infrastructure.Repositories
 {
-    class EfGenreRepository : IGenreRepository
+    public class EfGenreRepository : IGenreRepository
     {
         private readonly IMapper _mapper;
 
@@ -19,7 +19,7 @@ namespace GalleryApp.Infrastructure.Repositories
             _mapper = mapper;
         }
 
-        public async Task<ICollection<Genre>> AllGenres()
+        public async Task<ICollection<Genre>> AllGenresAsync()
         {
             ICollection<Genre> allGenres;
 
@@ -34,15 +34,14 @@ namespace GalleryApp.Infrastructure.Repositories
             return allGenres;
         }
 
-        public async Task<bool> TryCreate(Genre genreForCreate)
+        public async Task<bool> TryCreateAsync(Genre genreForCreate)
         {
-            genreForCreate = genreForCreate ?? throw new ArgumentNullException(nameof(genreForCreate));
-
             bool succses = true;
 
             using (var context = new GalleryContext())
             {
-                var genreEntityExist = await context.Genres.AnyAsync(genreEntity => genreEntity.Name == genreForCreate.Name);
+                var genreEntityExist = await context.Genres
+                    .AnyAsync(genreEntity => genreEntity.Name == genreForCreate.Name);
 
                 if (genreEntityExist == true)
                     succses = false;
@@ -57,15 +56,14 @@ namespace GalleryApp.Infrastructure.Repositories
             return succses;
         }
 
-        public async Task<bool> TryDelete(Genre modelForDelete)
+        public async Task<bool> TryDeleteAsync(Genre modelForDelete)
         {
-            modelForDelete = modelForDelete ?? throw new ArgumentNullException(nameof(modelForDelete));
-
             bool succses = true;
 
             using (var context = new GalleryContext())
             {
-                var genreEntityExist = await context.Genres.AnyAsync(genreEntity => genreEntity.Id == modelForDelete.Index);
+                var genreEntityExist = await context.Genres
+                    .AnyAsync(genreEntity => genreEntity.Id == modelForDelete.Index);
 
                 if (!genreEntityExist)
                     succses = false;
@@ -80,15 +78,15 @@ namespace GalleryApp.Infrastructure.Repositories
             return succses;
         }
 
-        public async Task<Genre> GetById(int? id)
+        public async Task<Genre> GetByIdAsync(int? id)
         {
-            id = id ?? throw new ArgumentNullException(nameof(id));
-
             Genre result;
 
             using (var context = new GalleryContext())
             {
-                var genreEntityExist = await context.Genres.FirstOrDefaultAsync(genreEntity => genreEntity.Id == id);
+                var genreEntityExist = await context.Genres
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(genreEntity => genreEntity.Id == id);
 
                 if (genreEntityExist == null)
                     return null;
@@ -101,14 +99,14 @@ namespace GalleryApp.Infrastructure.Repositories
             return result;
         }
 
-        public async Task<bool> TryUpdate(Genre modelForUpdate)
+        public async Task<bool> TryUpdateAsync(Genre modelForUpdate)
         {
-            modelForUpdate = modelForUpdate ?? throw new ArgumentNullException(nameof(modelForUpdate));
             bool succses = true;
 
             using (var context = new GalleryContext())
             {
-                var genreEntityExist = await context.Genres.AnyAsync(genreEntity => genreEntity.Id == modelForUpdate.Index);
+                var genreEntityExist = await context.Genres
+                    .AnyAsync(genreEntity => genreEntity.Id == modelForUpdate.Index);
 
                 if (!genreEntityExist)
                     succses = false;
@@ -116,7 +114,7 @@ namespace GalleryApp.Infrastructure.Repositories
                 {
                     var entityForUpdate = _mapper.Map<GenreEntity>(modelForUpdate);
                     context.Genres.Update(entityForUpdate);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 }
             }
 

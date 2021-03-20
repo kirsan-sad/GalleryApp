@@ -11,7 +11,7 @@ namespace GalleryApp.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS;Initial Catalog=Gallerydb;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=galleryDb;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

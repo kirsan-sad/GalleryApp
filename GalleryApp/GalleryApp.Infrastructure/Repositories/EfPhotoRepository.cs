@@ -19,10 +19,8 @@ namespace GalleryApp.Infrastructure.Repositories
             _mapper = mapper;
         }
 
-        public async Task<ICollection<Photo>> GetAllPhotoByGenre(int? genreId)
+        public async Task<ICollection<Photo>> GetAllPhotoByGenreAsync(int? genreId)
         {
-            genreId = genreId ?? throw new ArgumentNullException(nameof(genreId));
-
             ICollection<Photo> allPhotos;
 
             using (var context = new GalleryContext())
@@ -36,10 +34,8 @@ namespace GalleryApp.Infrastructure.Repositories
             return allPhotos;
         }
 
-        public async Task<Photo> GetById(int? id)
+        public async Task<Photo> GetByIdAsync(int? id)
         {
-            id = id ?? throw new ArgumentNullException(nameof(id));
-
             Photo result;
 
             using (var context = new GalleryContext())
@@ -57,10 +53,8 @@ namespace GalleryApp.Infrastructure.Repositories
             return result;
         }
 
-        public async Task<bool> TryDelete(Photo modelForDelete)
+        public async Task<bool> TryDeleteAsync(Photo modelForDelete)
         {
-            modelForDelete = modelForDelete ?? throw new ArgumentNullException(nameof(modelForDelete));
-
             bool succses = true;
 
             using (var context = new GalleryContext())
@@ -73,16 +67,15 @@ namespace GalleryApp.Infrastructure.Repositories
                 {
                     var entityForDelete = _mapper.Map<PhotoEntity>(modelForDelete);
                     context.Photos.Remove(entityForDelete);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 }
             }
 
             return succses;
         }
 
-        public async Task<bool> TryUpdate(Photo modelForUpdate)
+        public async Task<bool> TryUpdateAsync(Photo modelForUpdate)
         {
-            modelForUpdate = modelForUpdate ?? throw new ArgumentNullException(nameof(modelForUpdate));
             bool succses = true;
 
             using (var context = new GalleryContext())
@@ -95,17 +88,32 @@ namespace GalleryApp.Infrastructure.Repositories
                 {
                     var entityForUpdate = _mapper.Map<GenreEntity>(modelForUpdate);
                     context.Genres.Update(entityForUpdate);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 }
             }
 
             return succses;
         }
 
-        public async Task<bool> TryUpload(Photo photoForLoading)
+        public async Task<bool> TryUploadAsync(Photo photoForLoading)
         {
-            
-            throw new NotImplementedException();
+            bool succses = true;
+
+            using (var context = new GalleryContext())
+            {
+                var photoEntityExist = await context.Photos.AnyAsync(photoEntity => photoEntity.Title == photoForLoading.Title);
+
+                if (photoEntityExist == true)
+                    succses = false;
+                else
+                {
+                    var entityPhoto = _mapper.Map<PhotoEntity>(photoForLoading);
+                    context.Photos.Add(entityPhoto);
+                    await context.SaveChangesAsync();
+                }
+            }
+
+            return succses;
         }
     }
 }

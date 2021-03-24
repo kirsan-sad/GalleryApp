@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryApp.Domain", "GalleryApp.Domain\GalleryApp.Domain.csproj", "{496B889D-AA74-4F56-AD34-44453DC0AB22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GalleryApp.Domain", "GalleryApp.Domain\GalleryApp.Domain.csproj", "{496B889D-AA74-4F56-AD34-44453DC0AB22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryApp.Infrastructure", "GalleryApp.Infrastructure\GalleryApp.Infrastructure.csproj", "{8E9DB96A-4824-4138-8CCC-F38BA3DBD273}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GalleryApp.Infrastructure", "GalleryApp.Infrastructure\GalleryApp.Infrastructure.csproj", "{8E9DB96A-4824-4138-8CCC-F38BA3DBD273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryApp.Web", "GalleryApp.Web\GalleryApp.Web.csproj", "{B7E6C645-BB4A-4511-A4BA-2F21D86B1B5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GalleryApp.Web", "GalleryApp.Web\GalleryApp.Web.csproj", "{B7E6C645-BB4A-4511-A4BA-2F21D86B1B5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

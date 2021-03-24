@@ -15,5 +15,6 @@ namespace GalleryApp.Domain.Models
 
         [StringLength(200, MinimumLength = 5, ErrorMessage = "The genre description must be between 5 and 200 characters long")]
         public string Description { get; set; }
+        public IEnumerable<Photo> Photos { get; set; }
     }
 }

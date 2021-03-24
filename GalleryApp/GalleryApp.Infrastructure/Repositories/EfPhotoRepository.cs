@@ -25,8 +25,8 @@ namespace GalleryApp.Infrastructure.Repositories
 
             using (var context = new GalleryContext())
             {
-                var allPhotoEntitiesByGenre = context.Photos.SelectMany(genre => genre.Genres
-                .Where(genreIndex => genreIndex.Id == genreId));
+                var allPhotoEntitiesByGenre = context.Genres.Where(genreIndex => genreIndex.Id == genreId)
+                    .SelectMany(photos => photos.Photos);
 
                 allPhotos = await _mapper.ProjectTo<Photo>(allPhotoEntitiesByGenre).ToListAsync();
             }
@@ -101,7 +101,7 @@ namespace GalleryApp.Infrastructure.Repositories
 
             using (var context = new GalleryContext())
             {
-                var photoEntityExist = await context.Photos.AnyAsync(photoEntity => photoEntity.Title == photoForLoading.Title);
+                var photoEntityExist = await context.Photos.AnyAsync(photoEntity => photoEntity.Name == photoForLoading.Name);
 
                 if (photoEntityExist == true)
                     succses = false;
@@ -114,6 +114,21 @@ namespace GalleryApp.Infrastructure.Repositories
             }
 
             return succses;
+        }
+
+        public async Task<ICollection<Photo>> GetAllPhoto()
+        {
+            ICollection<Photo> allPhotos;
+
+            using (var context = new GalleryContext())
+            {
+                var allPhotoEntities = from Photo in context.Photos
+                                       select Photo;
+
+                allPhotos = await _mapper.ProjectTo<Photo>(allPhotoEntities).ToListAsync();
+            }
+
+            return allPhotos;
         }
     }
 }

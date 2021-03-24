@@ -1,0 +1,10 @@
+﻿@model IEnumerable<GalleryApp.Domain.Models.Photo>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@foreach (var f in Model)
+{
+    <p><img style="width:200px;height:200px" src="/Images/@f.Name"></p>
+}

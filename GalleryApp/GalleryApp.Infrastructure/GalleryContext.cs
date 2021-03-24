@@ -19,6 +19,10 @@ namespace GalleryApp.Infrastructure
             modelBuilder.Entity<PhotoEntity>()
                     .HasMany(g => g.Genres)
                     .WithMany(p => p.Photos);
+
+            modelBuilder.Entity<GenreEntity>()
+                    .HasMany(p => p.Photos)
+                    .WithMany(g => g.Genres);
         }
     }
 }

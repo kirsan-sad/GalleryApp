@@ -46,10 +46,7 @@ namespace GalleryApp.Infrastructure.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Format")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Path")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")

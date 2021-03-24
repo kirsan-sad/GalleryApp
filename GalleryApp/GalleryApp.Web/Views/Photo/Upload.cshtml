@@ -1,0 +1,48 @@
+﻿@model GalleryApp.Domain.Models.Photo
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Genre</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Upload" asp-controller="Photo" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Genres" class="control-label"></label>
+                @foreach (var genre in ViewBag.Genres)
+                {
+                    <p><input type="checkbox" name="GenresId" value="@genre.Index" />@genre.Name</p>
+                }
+                <span asp-validation-for="Genres" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="file" name="uploadedFile" /><br>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

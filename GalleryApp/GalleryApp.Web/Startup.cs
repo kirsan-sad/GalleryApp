@@ -27,9 +27,12 @@ namespace GalleryApp.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<GalleryContext>(options =>
+                options.UseSqlServer(connection));
             services.AddAutoMapper(typeof(MappingProfile));
-            services.AddTransient<IPhotoRepository, EfPhotoRepository>();
-            services.AddTransient<IGenreRepository, EfGenreRepository>();
+            services.AddTransient<IPhotoRepository, PhotoRepository>();
+            services.AddTransient<IGenreRepository, GenreRepository>();
             services.AddControllersWithViews();
         }
 

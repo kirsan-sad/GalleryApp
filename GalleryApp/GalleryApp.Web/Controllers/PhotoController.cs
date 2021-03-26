@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +11,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace GalleryApp.Web.Controllers
 {
@@ -26,8 +26,6 @@ namespace GalleryApp.Web.Controllers
             _genreRepository = genreRepository;
         }
 
-        // GET: /<controller>/
-
         public async Task<IActionResult> Index()
         {
             return View(await _repository.GetAllPhoto());
@@ -40,51 +38,45 @@ namespace GalleryApp.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int? id)
+        public async Task<IActionResult> Get([Required]int id)
         {
-            id = id ?? throw new ArgumentNullException(nameof(id));
+            var photos = await _repository.GetAllPhotoByGenreAsync(id);
 
-            var result = await _repository.GetAllPhotoByGenreAsync(id);
-
-            if (result.Count == 0)
+            if (photos.Count == 0)
             {
                 return NotFound();
             }
 
-            return View(result);
+            return View(photos);
         }
 
         [HttpGet]
         public async Task<IActionResult> Upload()
         {
-            ViewBag.Genres = await _genreRepository.AllGenresAsync();
+            ViewBag.Genres = await _genreRepository.GetGenresAsync();
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload(Photo photoToUpload, IFormFile uploadedFile, List<int> GenresId)
+        public async Task<IActionResult> Upload(Photo model, IFormFile uploadedFile, List<int> genresId)
         {
-            
+
             if (uploadedFile != null)
             {
-                // путь к папке Files
                 string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "images");
                 string uniqueFileName = Guid.NewGuid().ToString() + ".jpg";
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                // сохраняем файл в папку Files в каталоге wwwroot
+
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
 
-                //Photo photo = new Photo { Name = uniqueFileName};
-                photoToUpload.Name = uniqueFileName;
-                photoToUpload.Genres = await GetGenresCollectin(GenresId);
-                //photoToUpload.GenreChecked = new List<Genre>();
+                model.Name = uniqueFileName;
 
-                var result = await _repository.TryUploadAsync(photoToUpload);
+                var isUploaded = await _repository.TryUploadAsync(model, genresId);
 
-                if (!result)
+                if (!isUploaded)
                 {
                     return NotFound();
                 }
@@ -95,20 +87,42 @@ namespace GalleryApp.Web.Controllers
             return NotFound();
         }
 
-        private async Task<ICollection<Genre>> GetGenresCollectin(List<int> GenresId)
+        [HttpGet]
+        public async Task<ActionResult<Photo>> Delete([Required]int id)
         {
-            var checkedGenres = new List<Genre>();
+            var photo = await _repository.GetByIdAsync(id);
 
-            var allGenreEntity = await _genreRepository.AllGenresAsync();
-
-            foreach (var item in GenresId)
+            if (photo == null)
             {
-                var result = allGenreEntity.FirstOrDefault(genreEntity => genreEntity.Index == item);
-                if (result != null)
-                    checkedGenres.Add(result);
+                return NotFound();
             }
 
-            return checkedGenres;
+            return View(photo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Photo model)
+        {
+            IActionResult result;
+            string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "images");
+            string filePath = Path.Combine(uploadsFolder, model.Name.ToString());
+
+            var isDeleted = await _repository.TryDeleteAsync(model);
+
+            if (!isDeleted)
+                result = NotFound();
+            else
+            {
+                result = RedirectToAction(nameof(Index));
+                                
+                FileInfo file = new FileInfo(filePath);
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
+
+            return result;
         }
     }
 }

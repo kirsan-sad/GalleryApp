@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using GalleryApp.Domain.Interfaces;
@@ -18,7 +19,7 @@ namespace GalleryApp.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _repository.AllGenresAsync());
+            return View(await _repository.GetGenresAsync());
         }
 
         [HttpGet]
@@ -28,13 +29,13 @@ namespace GalleryApp.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Genre genreForCreate)
+        public async Task<IActionResult> Create(Genre model)
         {
             if (ModelState.IsValid)
             {
-                var result = await _repository.TryCreateAsync(genreForCreate);
+                var isCreated = await _repository.TryCreateAsync(model);
 
-                if (!result)
+                if (!isCreated)
                 {
                     return NotFound();
                 }
@@ -46,43 +47,39 @@ namespace GalleryApp.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Genre>> Get(int? id)
+        public async Task<ActionResult<Genre>> Get([Required]int id)
         {
-            id = id ?? throw new ArgumentNullException(nameof(id));
+            var genre = await _repository.GetByIdAsync(id);
 
-            var result = await _repository.GetByIdAsync(id);
-
-            if (result == null)
+            if (genre == null)
             {
                 return NotFound();
             }
 
-            return View(result);
+            return View(genre);
         }
 
         [HttpGet]
-        public async Task<ActionResult<Genre>> Edit(int? id)
+        public async Task<ActionResult<Genre>> Edit([Required]int id)
         {
-            id = id ?? throw new ArgumentNullException(nameof(id));
+            var genre = await _repository.GetByIdAsync(id);
 
-            var result = await _repository.GetByIdAsync(id);
-
-            if (result == null)
+            if (genre == null)
             {
                 return NotFound();
             }
 
-            return View(result);
+            return View(genre);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Genre genreForUpdate)
+        public async Task<IActionResult> UpdateGenre(Genre model)
         {
             if (ModelState.IsValid)
             {
-                var result = await _repository.TryUpdateAsync(genreForUpdate);
+                var isUpdated = await _repository.TryUpdateAsync(model);
 
-                if (!result)
+                if (!isUpdated)
                 {
                     return NotFound();
                 }
@@ -94,31 +91,28 @@ namespace GalleryApp.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Genre>> Delete(int? id)
+        public async Task<ActionResult<Genre>> Delete([Required]int id)
         {
-            id = id ?? throw new ArgumentNullException(nameof(id));
+            var genre = await _repository.GetByIdAsync(id);
 
-            var result = await _repository.GetByIdAsync(id);
-
-            if (result == null)
+            if (genre == null)
             {
                 return NotFound();
             }
 
-            return View(result);
+            return View(genre);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete(Genre genreForUpdate)
+        [HttpPost]
+        public async Task<IActionResult> Delete(Genre model)
         {
-            var result = await _repository.TryDeleteAsync(genreForUpdate);
+            IActionResult result;
 
-            if (!result)
-            {
-                return NotFound();
-            }
-            else
-                return RedirectToAction(nameof(Index));
+            var isDeleted = await _repository.TryDeleteAsync(model);
+
+            result = (!isDeleted)? NotFound() : result = RedirectToAction(nameof(Index));
+
+            return result;
         }
     }
 }

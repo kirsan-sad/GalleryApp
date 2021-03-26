@@ -6,7 +6,7 @@ namespace GalleryApp.Domain.Interfaces
 {
     public interface IGenreRepository : IRepository<Genre>
     {
-        Task<ICollection<Genre>> AllGenresAsync();
+        Task<ICollection<Genre>> GetGenresAsync();
         Task<bool> TryCreateAsync(Genre genreForCreate);
     }
 }

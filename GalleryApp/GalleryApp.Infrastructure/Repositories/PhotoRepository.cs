@@ -10,20 +10,22 @@ using System.Threading.Tasks;
 
 namespace GalleryApp.Infrastructure.Repositories
 {
-    public class EfPhotoRepository : IPhotoRepository
+    public class PhotoRepository : IPhotoRepository
     {
         private readonly IMapper _mapper;
+        private readonly GalleryContext _context;
 
-        public EfPhotoRepository(IMapper mapper)
+        public PhotoRepository(IMapper mapper, GalleryContext context)
         {
             _mapper = mapper;
+            _context = context;
         }
 
-        public async Task<ICollection<Photo>> GetAllPhotoByGenreAsync(int? genreId)
+        public async Task<ICollection<Photo>> GetAllPhotoByGenreAsync(int genreId)
         {
             ICollection<Photo> allPhotos;
 
-            using (var context = new GalleryContext())
+            using (var context = _context)
             {
                 var allPhotoEntitiesByGenre = context.Genres.Where(genreIndex => genreIndex.Id == genreId)
                     .SelectMany(photos => photos.Photos);
@@ -34,11 +36,11 @@ namespace GalleryApp.Infrastructure.Repositories
             return allPhotos;
         }
 
-        public async Task<Photo> GetByIdAsync(int? id)
+        public async Task<Photo> GetByIdAsync(int id)
         {
             Photo result;
 
-            using (var context = new GalleryContext())
+            using (var context = _context)
             {
                 var photoEntityExist = await context.Photos.FirstOrDefaultAsync(photoEntity => photoEntity.Id == id);
 
@@ -55,14 +57,14 @@ namespace GalleryApp.Infrastructure.Repositories
 
         public async Task<bool> TryDeleteAsync(Photo modelForDelete)
         {
-            bool succses = true;
+            bool success = true;
 
-            using (var context = new GalleryContext())
+            using (var context = _context)
             {
                 var photoEntityExist = await context.Photos.AnyAsync(photoEntity => photoEntity.Id == modelForDelete.Index);
 
                 if (!photoEntityExist)
-                    succses = false;
+                    success = false;
                 else
                 {
                     var entityForDelete = _mapper.Map<PhotoEntity>(modelForDelete);
@@ -71,19 +73,19 @@ namespace GalleryApp.Infrastructure.Repositories
                 }
             }
 
-            return succses;
+            return success;
         }
 
         public async Task<bool> TryUpdateAsync(Photo modelForUpdate)
         {
-            bool succses = true;
+            bool success = true;
 
-            using (var context = new GalleryContext())
+            using (var context = _context)
             {
                 var photoEntityExist = await context.Photos.AnyAsync(photoEntity => photoEntity.Id == modelForUpdate.Index);
 
                 if (!photoEntityExist)
-                    succses = false;
+                    success = false;
                 else
                 {
                     var entityForUpdate = _mapper.Map<GenreEntity>(modelForUpdate);
@@ -92,35 +94,41 @@ namespace GalleryApp.Infrastructure.Repositories
                 }
             }
 
-            return succses;
+            return success;
         }
 
-        public async Task<bool> TryUploadAsync(Photo photoForLoading)
+        public async Task<bool> TryUploadAsync(Photo photoForUpoading, List<int> genresId)
         {
-            bool succses = true;
+            bool success = true;
 
-            using (var context = new GalleryContext())
+            using (var context = _context)
             {
-                var photoEntityExist = await context.Photos.AnyAsync(photoEntity => photoEntity.Name == photoForLoading.Name);
+                var photoEntityExist = await context.Photos.AnyAsync(photoEntity => photoEntity.Name == photoForUpoading.Name);
 
-                if (photoEntityExist == true)
-                    succses = false;
+                if (photoEntityExist == true) //photoEntityExists, проверить жанр
+                    success = false;
                 else
                 {
-                    var entityPhoto = _mapper.Map<PhotoEntity>(photoForLoading);
-                    context.Photos.Add(entityPhoto);
+                    var entityPhoto = _mapper.Map<PhotoEntity>(photoForUpoading);
+                    var photo = context.Photos.Add(entityPhoto).Entity;
                     await context.SaveChangesAsync();
+
+                    photo.Genres = context.Genres.Where(genre => genresId.Contains(genre.Id)).ToList();
+                    context.Update(photo);
+                    await context.SaveChangesAsync();
+
+                    success = true;
                 }
             }
 
-            return succses;
+            return success;
         }
 
         public async Task<ICollection<Photo>> GetAllPhoto()
         {
             ICollection<Photo> allPhotos;
 
-            using (var context = new GalleryContext())
+            using (var context = _context)
             {
                 var allPhotoEntities = from Photo in context.Photos
                                        select Photo;

@@ -6,13 +6,17 @@ namespace GalleryApp.Infrastructure
 {
     public class GalleryContext : DbContext
     {
+        public GalleryContext(DbContextOptions<GalleryContext> options)
+            : base(options)
+        {
+        }
         public DbSet<PhotoEntity> Photos { get; set; }
         public DbSet<GenreEntity> Genres { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=galleryDb;Integrated Security=True");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=galleryDb;Integrated Security=True");
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

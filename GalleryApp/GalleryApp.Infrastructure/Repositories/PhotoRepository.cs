@@ -5,6 +5,7 @@ using GalleryApp.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -67,6 +68,8 @@ namespace GalleryApp.Infrastructure.Repositories
                     success = false;
                 else
                 {
+                    
+
                     var entityForDelete = _mapper.Map<PhotoEntity>(modelForDelete);
                     context.Photos.Remove(entityForDelete);
                     await context.SaveChangesAsync();

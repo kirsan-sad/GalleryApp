@@ -104,8 +104,9 @@ namespace GalleryApp.Web.Controllers
         public async Task<IActionResult> Delete(Photo model)
         {
             IActionResult result;
+
             string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "images");
-            string filePath = Path.Combine(uploadsFolder, model.Name.ToString());
+            string filePath = Path.Combine(uploadsFolder, model.Name);
 
             var isDeleted = await _repository.TryDeleteAsync(model);
 
@@ -113,13 +114,14 @@ namespace GalleryApp.Web.Controllers
                 result = NotFound();
             else
             {
-                result = RedirectToAction(nameof(Index));
-                                
                 FileInfo file = new FileInfo(filePath);
+
                 if (file.Exists)
-                {
                     file.Delete();
-                }
+                else
+                    throw new ArgumentNullException(nameof(file));
+
+                result = RedirectToAction(nameof(Index));
             }
 
             return result;

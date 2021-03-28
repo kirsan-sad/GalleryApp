@@ -17,13 +17,13 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group1">
                 <label asp-for="@Model.Genres" class="control-label"></label>
                 @foreach (var genre in ViewBag.Genres)
                 {
                     <p><input type="checkbox" name="GenresId" value="@genre.Index" />@genre.Name</p>
                 }
-                <span asp-validation-for="Genres" class="text-danger"></span>
+                <span asp-validation-for="Genres" class="text-danger" ></span>
             </div>
 
             <div class="form-group">
@@ -36,7 +36,6 @@
         </form>
     </div>
 </div>
-
 
 <div>
     <a asp-action="Index">Back to List</a>

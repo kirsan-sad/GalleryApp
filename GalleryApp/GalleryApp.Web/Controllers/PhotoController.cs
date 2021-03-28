@@ -21,14 +21,14 @@ namespace GalleryApp.Web.Controllers
         private readonly IWebHostEnvironment _appEnvironment;
         public PhotoController(IPhotoRepository repository, IWebHostEnvironment appEnvironment, IGenreRepository genreRepository)
         {
-            _repository = repository;
-            _appEnvironment = appEnvironment;
-            _genreRepository = genreRepository;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _appEnvironment = appEnvironment ?? throw new ArgumentNullException(nameof(appEnvironment));
+            _genreRepository = genreRepository ?? throw new ArgumentNullException(nameof(genreRepository));
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _repository.GetAllPhoto());
+            return View(await _repository.GetPhotos());
         }
 
         [HttpGet]
@@ -40,14 +40,13 @@ namespace GalleryApp.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([Required]int id)
         {
-            var photos = await _repository.GetAllPhotoByGenreAsync(id);
+            IActionResult result;
 
-            if (photos.Count == 0)
-            {
-                return NotFound();
-            }
+            var photos = await _repository.GetPhotosByGenreAsync(id);
 
-            return View(photos);
+            result = (photos.Count == 0)? NotFound() : result = View(photos);
+
+            return result;
         }
 
         [HttpGet]
@@ -60,7 +59,6 @@ namespace GalleryApp.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Upload(Photo model, IFormFile uploadedFile, List<int> genresId)
         {
-
             if (uploadedFile != null)
             {
                 string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "images");
@@ -90,14 +88,13 @@ namespace GalleryApp.Web.Controllers
         [HttpGet]
         public async Task<ActionResult<Photo>> Delete([Required]int id)
         {
+            ActionResult result;
+
             var photo = await _repository.GetByIdAsync(id);
 
-            if (photo == null)
-            {
-                return NotFound();
-            }
+            result = (photo == null)? NotFound() : result = View(photo);
 
-            return View(photo);
+            return result;
         }
 
         [HttpPost]
@@ -125,6 +122,36 @@ namespace GalleryApp.Web.Controllers
             }
 
             return result;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<Photo>> Update([Required]int id)
+        {
+            ActionResult result;
+
+            var photo = await _repository.GetByIdAsync(id);
+
+            result = (photo == null)? NotFound() : result = View(photo);
+
+            return result;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Photo model)
+        {
+            if (ModelState.IsValid)
+            {
+                var isUpdated = await _repository.TryUpdateAsync(model);
+
+                if (!isUpdated)
+                {
+                    return NotFound();
+                }
+                else
+                    return RedirectToAction(nameof(Index));
+            }
+
+            return NotFound();
         }
     }
 }

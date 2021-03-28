@@ -14,7 +14,7 @@ namespace GalleryApp.Web.Controllers
         private readonly IGenreRepository _repository;
         public GenreController(IGenreRepository repository)
         {
-            _repository = repository;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public async Task<IActionResult> Index()
@@ -60,7 +60,7 @@ namespace GalleryApp.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Genre>> Edit([Required]int id)
+        public async Task<ActionResult<Genre>>Update([Required]int id)
         {
             var genre = await _repository.GetByIdAsync(id);
 
@@ -73,7 +73,7 @@ namespace GalleryApp.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateGenre(Genre model)
+        public async Task<IActionResult>Update(Genre model)
         {
             if (ModelState.IsValid)
             {

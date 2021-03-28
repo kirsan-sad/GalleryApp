@@ -188,5 +188,6 @@ C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\o
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Photo\Index.cshtml.g.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Photo\Upload.cshtml.g.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Photo\Get.cshtml.g.cs
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Genre\UpdateGenre.cshtml.g.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Photo\Delete.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Genre\Update.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Photo\Update.cshtml.g.cs

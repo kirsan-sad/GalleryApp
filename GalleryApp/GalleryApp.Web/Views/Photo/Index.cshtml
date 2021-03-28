@@ -2,17 +2,13 @@
 @{
     ViewData["Title"] = "Добавление файла";
 }
-<h3>Выберите файл для загрузки</h3>
-<form asp-action="Upload" asp-controller="Photo" method="post" enctype="multipart/form-data">
-    <input type="file" name="uploadedFile" /><br>
-    <input type="submit" value="Загрузить" />
-</form>
 
 <h3>Все файлы</h3>
 @foreach (var f in Model)
 {
     <p><img style="width:200px;height:200px" src="/Images/@f.Name"></p>
     <p><a asp-action="Delete" asp-route-id="@f.Index">Delete</a></p>
+    <p><a asp-action="Update" asp-route-id="@f.Index">Update</a></p>
     <p>@Html.DisplayFor(modelItem => f.Name)</p>
     <p>@Html.DisplayFor(modelItem => f.Title)</p>
 }

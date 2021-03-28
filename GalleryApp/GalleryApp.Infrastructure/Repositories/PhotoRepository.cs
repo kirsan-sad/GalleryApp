@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace GalleryApp.Infrastructure.Repositories
@@ -18,11 +19,11 @@ namespace GalleryApp.Infrastructure.Repositories
 
         public PhotoRepository(IMapper mapper, GalleryContext context)
         {
-            _mapper = mapper;
-            _context = context;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<ICollection<Photo>> GetAllPhotoByGenreAsync(int genreId)
+        public async Task<ICollection<Photo>> GetPhotosByGenreAsync(int genreId)
         {
             ICollection<Photo> allPhotos;
 
@@ -43,6 +44,7 @@ namespace GalleryApp.Infrastructure.Repositories
 
             using (var context = _context)
             {
+
                 var photoEntityExist = await context.Photos.FirstOrDefaultAsync(photoEntity => photoEntity.Id == id);
 
                 if (photoEntityExist == null)
@@ -68,8 +70,6 @@ namespace GalleryApp.Infrastructure.Repositories
                     success = false;
                 else
                 {
-                    
-
                     var entityForDelete = _mapper.Map<PhotoEntity>(modelForDelete);
                     context.Photos.Remove(entityForDelete);
                     await context.SaveChangesAsync();
@@ -91,8 +91,8 @@ namespace GalleryApp.Infrastructure.Repositories
                     success = false;
                 else
                 {
-                    var entityForUpdate = _mapper.Map<GenreEntity>(modelForUpdate);
-                    context.Genres.Update(entityForUpdate);
+                    var entityForUpdate = _mapper.Map<PhotoEntity>(modelForUpdate);
+                    context.Photos.Update(entityForUpdate);
                     await context.SaveChangesAsync();
                 }
             }
@@ -127,7 +127,7 @@ namespace GalleryApp.Infrastructure.Repositories
             return success;
         }
 
-        public async Task<ICollection<Photo>> GetAllPhoto()
+        public async Task<ICollection<Photo>> GetPhotos()
         {
             ICollection<Photo> allPhotos;
 

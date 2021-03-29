@@ -4,14 +4,16 @@ using GalleryApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GalleryApp.Infrastructure.Migrations
 {
     [DbContext(typeof(GalleryContext))]
-    partial class GalleryContextModelSnapshot : ModelSnapshot
+    [Migration("20210329144158_AddUserChangeAuthorOnPhoto")]
+    partial class AddUserChangeAuthorOnPhoto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GalleryApp.Domain.Interfaces;
 using GalleryApp.Infrastructure;
 using GalleryApp.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +34,13 @@ namespace GalleryApp.Web
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddTransient<IPhotoRepository, PhotoRepository>();
             services.AddTransient<IGenreRepository, GenreRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.ExpireTimeSpan = TimeSpan.FromSeconds(60);
+                });
             services.AddControllersWithViews();
         }
 
@@ -54,6 +62,7 @@ namespace GalleryApp.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

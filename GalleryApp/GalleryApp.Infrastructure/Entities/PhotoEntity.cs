@@ -8,7 +8,7 @@ namespace GalleryApp.Infrastructure.Entities
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Author { get; set; }
+        public UserEntity Author { get; set; }
         public string Name { get; set; }
         public IEnumerable<GenreEntity> Genres { get; set; }
     }

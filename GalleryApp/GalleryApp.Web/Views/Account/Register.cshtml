@@ -1,0 +1,26 @@
+﻿@model GalleryApp.Domain.Models.User
+
+<h2>Registration</h2>
+
+<form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div>
+            <label asp-for="Login">Login</label><br />
+            <input type="text" asp-for="Login" />
+            <span asp-validation-for="Login" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Password">Password</label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div>
+            <input type="submit" value="Register" />
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

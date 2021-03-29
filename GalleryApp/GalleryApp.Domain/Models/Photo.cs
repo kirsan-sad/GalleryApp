@@ -12,7 +12,7 @@ namespace GalleryApp.Domain.Models
         [Required]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "The genre name must be between 3 and 50 characters long")]
         public string Title { get; set; }
-        public string Author { get; set; }
+        public User Author { get; set; }
         public string Name { get; set; }
         public IEnumerable<Genre> Genres { get; set; }
     }

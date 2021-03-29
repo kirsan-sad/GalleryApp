@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GalleryApp.Domain.Interfaces;
 using GalleryApp.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GalleryApp.Web.Controllers
@@ -23,12 +24,14 @@ namespace GalleryApp.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(Genre model)
         {
             if (ModelState.IsValid)

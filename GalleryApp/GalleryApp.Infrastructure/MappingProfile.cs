@@ -17,6 +17,9 @@ namespace GalleryApp.Infrastructure
             CreateMap<GenreEntity, Genre>()
                 .ForMember(d => d.Index, map => map.MapFrom(s => s.Id))
                 .ReverseMap();
+            CreateMap<UserEntity, User>()
+                .ForMember(d => d.Index, map => map.MapFrom(s => s.Id))
+                .ReverseMap();
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HGmUSBueca31UCXgBhLlneIdPWuis+cao8oDOeWLYaWEkMkH7aKAMWFlw/eKVMvc96HG17DHOCXM7Y44OQbvBg==",
+  "dgSpecHash": "hlVBXHOlEeZHcSGgD+Cz+1X4MnfdWPX0Vseyws2/igghVOdj2Yckltw6ITODtaMVK71TNvLW1wsinl/9SSN3Jg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Web\\GalleryApp.Web.csproj",
   "expectedPackageFiles": [
@@ -84,6 +84,7 @@
     "C:\\Users\\Анон\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Анон\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Анон\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\Анон\\.nuget\\packages\\sixlabors.imagesharp\\1.0.3\\sixlabors.imagesharp.1.0.3.nupkg.sha512",
     "C:\\Users\\Анон\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.2\\sqlitepclraw.bundle_e_sqlite3.2.0.2.nupkg.sha512",
     "C:\\Users\\Анон\\.nuget\\packages\\sqlitepclraw.core\\2.0.2\\sqlitepclraw.core.2.0.2.nupkg.sha512",
     "C:\\Users\\Анон\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.2\\sqlitepclraw.lib.e_sqlite3.2.0.2.nupkg.sha512",

@@ -7,6 +7,7 @@
 @foreach (var f in Model)
 {
     <p><img style="width:200px;height:200px" src="/Images/@f.Name"></p>
+    <p><img src="/Images/thumbnails/@f.Name"></p>
     <p><a asp-action="Delete" asp-route-id="@f.Index">Delete</a></p>
     <p><a asp-action="Update" asp-route-id="@f.Index">Update</a></p>
     <p>@Html.DisplayFor(modelItem => f.Name)</p>

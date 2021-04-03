@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using GalleryApp.Domain.Interfaces;
 using GalleryApp.Domain.Models;
 using GalleryApp.Infrastructure.Entities;
@@ -140,6 +141,28 @@ namespace GalleryApp.Infrastructure.Repositories
             }
 
             return allPhotos;
+        }
+
+        public async Task<ICollection<LastPhotos>> GetLastPhotosAsync(int numberOfPhotos)
+        {
+            ICollection<LastPhotos> lastPhotos;
+
+            using (var context = _context)
+            {
+                lastPhotos = await _context.Genres
+                    .AsNoTracking()
+                    .SelectMany(genre => genre.Photos.Take(1),
+                    (genre, photo)
+                    => new LastPhotos
+                    {
+                        GenreId = genre.Id,
+                        Genre = genre.Name,
+                        Photos = _mapper.Map<IEnumerable<Photo>>(genre.Photos.OrderByDescending(x => x.Id).Take(numberOfPhotos)).AsEnumerable()
+                        .ToList()
+                    }).ToListAsync();
+            }
+           
+            return lastPhotos;
         }
     }
 }

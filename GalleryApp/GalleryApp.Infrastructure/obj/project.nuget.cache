@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EG8w5Ibzd6ICv3XOw2WMBjappTdzkilc24kw5ysggT7K727/+a3OCE4SgKjK2f7ykM3JZdDRdaN8EMZ2mTTb3A==",
+  "dgSpecHash": "3sf9Ux1WuKweC7zKD1/8P81x3g6rsnTOJAz7RhSMAAeoVg02G6rWgqBJ056Sqv1kHtGw8+gMNCJ6Wp5Wngt9cg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -43,6 +43,7 @@
     "C:\\Users\\Анон\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Анон\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
     "C:\\Users\\Анон\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
+    "C:\\Users\\Анон\\.nuget\\packages\\sixlabors.imagesharp\\1.0.3\\sixlabors.imagesharp.1.0.3.nupkg.sha512",
     "C:\\Users\\Анон\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Анон\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
     "C:\\Users\\Анон\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",

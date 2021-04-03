@@ -1,8 +1,31 @@
-﻿@{
+﻿@model IEnumerable<GalleryApp.Domain.Models.LastPhotos>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <table class="table">
+        @foreach (var genre in Model)
+        {
+            <thead>
+                <tr>
+                    <th>
+                        <a asp-controller="Photo" asp-action="Get" asp-route-id="@genre.GenreId">@genre.Genre</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var photo in genre.Photos)
+                    {
+
+                        <td>
+                            <img style="width:200px;height:200px" src="/Images/@photo.Name">
+                        </td>
+
+                    }
+                </tr>
+            </tbody>
+                }
+        </table>
 </div>

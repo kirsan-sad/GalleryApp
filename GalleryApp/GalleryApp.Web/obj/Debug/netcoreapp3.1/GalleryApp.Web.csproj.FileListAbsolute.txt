@@ -194,3 +194,7 @@ C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\o
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\SixLabors.ImageSharp.dll
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\GalleryApp.Web.csproj.CoreCompileInputs.cache
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\GalleryApp.Web.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Genres.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Photos.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\_ViewAllGenres.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddOrEditGenre.cshtml.g.cs

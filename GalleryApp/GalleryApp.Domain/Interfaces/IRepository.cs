@@ -6,6 +6,6 @@ namespace GalleryApp.Domain.Interfaces
     {
         Task<TModel> GetByIdAsync(int id);
         Task<bool> TryUpdateAsync(TModel modelForUpdate);
-        Task<bool> TryDeleteAsync(TModel modelForDelete);
+        Task<bool> TryDeleteAsync(int id);
     }
 }

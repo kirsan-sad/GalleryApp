@@ -30,7 +30,7 @@ namespace GalleryApp.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _repository.GetPhotos());
+            return View(await _repository.GetPhotosAsync());
         }
 
         [HttpGet]
@@ -134,7 +134,7 @@ namespace GalleryApp.Web.Controllers
             string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "images");
             string filePath = Path.Combine(uploadsFolder, model.Name);
 
-            var isDeleted = await _repository.TryDeleteAsync(model);
+            var isDeleted = await _repository.TryDeleteAsync(model.Index);
 
             if (!isDeleted)
                 result = NotFound();
@@ -148,6 +148,7 @@ namespace GalleryApp.Web.Controllers
                     throw new ArgumentNullException(nameof(file));
 
                 result = RedirectToAction(nameof(Index));
+                //result = return PartialView();
             }
 
             return result;

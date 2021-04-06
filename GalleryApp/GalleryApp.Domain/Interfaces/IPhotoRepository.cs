@@ -8,7 +8,7 @@ namespace GalleryApp.Domain.Interfaces
     {
         Task<ICollection<Photo>> GetPhotosByGenreAsync(int genreId);
         Task<bool> TryUploadAsync(Photo photoForUploading, List<int> genresId);
-        Task<ICollection<Photo>> GetPhotos();
+        Task<ICollection<Photo>> GetPhotosAsync();
         Task<ICollection<LastPhotos>> GetLastPhotosAsync(int numberOfPhotos);
     }
 }

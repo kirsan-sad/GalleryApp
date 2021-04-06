@@ -25,13 +25,10 @@ namespace GalleryApp.Infrastructure.Repositories
         {
             ICollection<Genre> allGenres;
 
-            using (var context = _context)
-            {
-                var allGenresEntities = from genres in context.Genres
-                                        select genres;
+            var allGenresEntities = from genres in _context.Genres
+                                    select genres;
 
-                allGenres = await _mapper.ProjectTo<Genre>(allGenresEntities).ToListAsync();
-            }
+            allGenres = await _mapper.ProjectTo<Genre>(allGenresEntities).ToListAsync();
 
             return allGenres;
         }
@@ -40,41 +37,35 @@ namespace GalleryApp.Infrastructure.Repositories
         {
             bool success = true;
 
-            using (var context = _context)
-            {
-                var genreEntityExist = await context.Genres
-                    .AnyAsync(genreEntity => genreEntity.Name == genreForCreate.Name);
+            var genreEntityExist = await _context.Genres
+                .AnyAsync(genreEntity => genreEntity.Name == genreForCreate.Name);
 
-                if (genreEntityExist == true)
-                    success = false;
-                else
-                {
-                    var entityGenre = _mapper.Map<GenreEntity>(genreForCreate);
-                    context.Genres.Add(entityGenre);
-                    await context.SaveChangesAsync();
-                }
+            if (genreEntityExist == true)
+                success = false;
+            else
+            {
+                var entityGenre = _mapper.Map<GenreEntity>(genreForCreate);
+                _context.Genres.Add(entityGenre);
+                await _context.SaveChangesAsync();
             }
 
             return success;
         }
 
-        public async Task<bool> TryDeleteAsync(Genre modelForDelete)
+        public async Task<bool> TryDeleteAsync(int id)
         {
             bool success = true;
 
-            using (var context = _context)
-            {
-                var genreEntityExist = await context.Genres
-                    .AnyAsync(genreEntity => genreEntity.Id == modelForDelete.Index);
+            var genreEntityExist = await _context.Genres
+                .FirstOrDefaultAsync(genreEntity => genreEntity.Id == id);
 
-                if (!genreEntityExist)
-                    success = false;
-                else
-                {
-                    var entityForDelete = _mapper.Map<GenreEntity>(modelForDelete);
-                    context.Genres.Remove(entityForDelete);
-                    await context.SaveChangesAsync();
-                }
+            if (genreEntityExist == null)
+                success = false;
+            else
+            {
+                var entityForDelete = _mapper.Map<GenreEntity>(genreEntityExist);
+                _context.Genres.Remove(entityForDelete);
+                await _context.SaveChangesAsync();
             }
 
             return success;
@@ -84,16 +75,13 @@ namespace GalleryApp.Infrastructure.Repositories
         {
             Genre result;
 
-            using (var context = _context)
-            {
-                var genreEntityExist = await context.Genres
-                    .AsNoTracking()
-                    .FirstOrDefaultAsync(genreEntity => genreEntity.Id == id);
+            var genreEntityExist = await _context.Genres
+                .AsNoTracking()
+                .FirstOrDefaultAsync(genreEntity => genreEntity.Id == id);
 
-                genreEntityExist = genreEntityExist ?? throw new ArgumentNullException(nameof(genreEntityExist));
+            genreEntityExist = genreEntityExist ?? throw new ArgumentNullException(nameof(genreEntityExist));
 
-                result = _mapper.Map<Genre>(genreEntityExist);
-            }
+            result = _mapper.Map<Genre>(genreEntityExist);
 
             return result;
         }
@@ -102,19 +90,16 @@ namespace GalleryApp.Infrastructure.Repositories
         {
             bool success = true;
 
-            using (var context = _context)
-            {
-                var genreEntityExist = await context.Genres
-                    .AnyAsync(genreEntity => genreEntity.Id == modelForUpdate.Index);
+            var genreEntityExist = await _context.Genres
+                .AnyAsync(genreEntity => genreEntity.Id == modelForUpdate.Index);
 
-                if (!genreEntityExist)
-                    success = false;
-                else
-                {
-                    var entityForUpdate = _mapper.Map<GenreEntity>(modelForUpdate);
-                    context.Genres.Update(entityForUpdate);
-                    await context.SaveChangesAsync();
-                }
+            if (!genreEntityExist)
+                success = false;
+            else
+            {
+                var entityForUpdate = _mapper.Map<GenreEntity>(modelForUpdate);
+                _context.Genres.Update(entityForUpdate);
+                await _context.SaveChangesAsync();
             }
 
             return success;

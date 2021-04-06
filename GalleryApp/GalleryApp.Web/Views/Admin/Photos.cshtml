@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GalleryApp.Domain.Models.Photo>
+@{
+    ViewData["Title"] = "Photos";
+}
+
+<h3>Все файлы</h3>
+@foreach (var photo in Model)
+{
+    <p><img src="/Images/thumbnails/@photo.Name"></p>
+    <input type='button' class="submit" value='Details' data-value="@photo.Index" />
+    <p><a asp-action="Delete" asp-route-id="@photo.Index">Delete</a></p>
+    <p><a asp-action="Update" asp-route-id="@photo.Index">Update</a></p>
+    <p>@Html.DisplayFor(modelItem => photo.Name)</p>
+    <p>@Html.DisplayFor(modelItem => photo.Title)</p>
+}
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $("#addBtn").click(function () {
+            $.ajax({
+                url: $(this).attr("formaction"),
+            }).done(function (msg) {
+                $("#AddContent").html(msg);
+                $("#add-contact").modal("show");
+            })
+        });
+        $("body").on("click", "#save", function () {
+            var form = $('form');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+            $.ajax({
+                type: "post",
+                url: form.attr('action'),
+                data: {
+                    __RequestVerificationToken: token,
+                    position: {
+                        PositionName: $("#PositionName").val()
+                    }
+                },
+                dataType: "html",
+                success: function (result) {
+                    $("#add-contact").modal("hide");
+                    $("#partial").html(result);
+                }
+            });
+            return false;
+        });
+    </script>
+
+}
+
+<button class="btn btn-primary" asp-controller="Photo" asp-action="Update"
+        data-toggle="ajax-modal" data-target="#add-contact" id="addBtn">
+    Update
+</button>
+<br />
+<div class="modal fade" id="add-contact" tabindex="-1" role="dialog" aria-labelledby="addPositionsLabel" aria-hidden="true">
+    <div id="AddContent">
+    </div>
+</div>
+<div id="partial">
+    @Html.Partial("~/Views/Photo/Delete.cshtml", Model)
+</div>

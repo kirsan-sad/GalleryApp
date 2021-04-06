@@ -1,0 +1,11 @@
+﻿@model IEnumerable< GalleryApp.Domain.Models.Genre>
+
+@{ ViewData["Title"] = "Index"; }
+
+<div id="view-all">
+    @await Html.PartialAsync("_ViewAllGenres", Model)
+</div>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

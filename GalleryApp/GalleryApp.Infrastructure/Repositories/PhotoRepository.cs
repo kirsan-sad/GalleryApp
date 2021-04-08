@@ -72,7 +72,7 @@ namespace GalleryApp.Infrastructure.Repositories
             return success;
         }
 
-        public async Task<bool> TryUpdateAsync(Photo modelForUpdate)
+        public async Task<bool> TryUpdateAsync(Photo modelForUpdate, List<int> genresId)
         {
             bool success = true;
 
@@ -84,25 +84,32 @@ namespace GalleryApp.Infrastructure.Repositories
             else
             {
                 var entityForUpdate = _mapper.Map<PhotoEntity>(modelForUpdate);
-                _context.Photos.Update(entityForUpdate);
+                var photo = _context.Photos.Update(entityForUpdate).Entity;
                 await _context.SaveChangesAsync();
+
+                photo.Genres = _context.Genres
+                    .Where(genre => genresId.Contains(genre.Id)).ToList();
+                _context.Update(photo);
+                await _context.SaveChangesAsync();
+                //_context.Photos.Update(entityForUpdate);
+                //await _context.SaveChangesAsync();
             }
 
             return success;
         }
 
-        public async Task<bool> TryUploadAsync(Photo photoForUpoading, List<int> genresId)
+        public async Task<bool> TryUploadAsync(Photo photoForUploading, List<int> genresId)
         {
             bool success = true;
 
             var photoEntityExist = await _context.Photos
-                .AnyAsync(photoEntity => photoEntity.Name == photoForUpoading.Name);
+                .AnyAsync(photoEntity => photoEntity.Name == photoForUploading.Name);
 
             if (photoEntityExist == true) //photoEntityExists, проверить жанр
                 success = false;
             else
             {
-                var entityPhoto = _mapper.Map<PhotoEntity>(photoForUpoading);
+                var entityPhoto = _mapper.Map<PhotoEntity>(photoForUploading);
                 var photo = _context.Photos.Add(entityPhoto).Entity;
                 await _context.SaveChangesAsync();
 
@@ -146,6 +153,11 @@ namespace GalleryApp.Infrastructure.Repositories
                 }).ToListAsync();
 
             return lastPhotos;
+        }
+
+        public async Task<int> GetCount()
+        {
+            return await _context.Photos.AsNoTracking().CountAsync();
         }
     }
 }

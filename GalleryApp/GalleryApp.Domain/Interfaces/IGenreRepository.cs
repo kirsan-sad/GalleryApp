@@ -8,5 +8,6 @@ namespace GalleryApp.Domain.Interfaces
     {
         Task<ICollection<Genre>> GetGenresAsync();
         Task<bool> TryCreateAsync(Genre genreForCreate);
+        Task<bool> TryUpdateAsync(Genre genreForUpdate);
     }
 }

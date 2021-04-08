@@ -1,0 +1,39 @@
+﻿<div class="text-center">
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>
+                    Number of Categories
+                </td>
+                <td>
+                    @ViewBag.GenresCount
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Genres")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Number of Photos
+                </td>
+                <td>
+                    @ViewBag.PhotosCount
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Photos")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Number of Users
+                </td>
+                <td>
+                    @ViewBag.UsersCount
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Users")
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,9 +1,9 @@
-﻿@model IEnumerable<GalleryApp.Domain.Models.Photo>
+﻿@model IEnumerable<GalleryApp.Domain.Models.User>
 
 @{ ViewData["Title"] = "Index"; }
 
 <div id="view-all">
-    @await Html.PartialAsync("_ViewAllPhotos", Model)
+    @await Html.PartialAsync("_ViewAllUsers", Model)
 </div>
 
 @section Scripts{

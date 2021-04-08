@@ -104,5 +104,10 @@ namespace GalleryApp.Infrastructure.Repositories
 
             return success;
         }
+
+        public async Task<int> GetCount()
+        {
+            return await _context.Genres.AsNoTracking().CountAsync();
+        }
     }
 }

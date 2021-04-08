@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace GalleryApp.Domain.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
+        Task<ICollection<User>> GetUsersAsync();
         Task<User> RegisterAsync(User userForRegister);
         Task<User> LoginAsync(User userForLogin);
+        Task<bool> TryUpdateAsync(User userForUpdate);
+        Task<bool> TryCreateAsync(User userForCreate);
     }
 }

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<GalleryApp.Domain.Models.Photo>
+
+<h3><a onclick="showInPopup('@Url.Action("AddPhoto","Admin",new {id=0},Context.Request.Scheme)','New Photo')" class="btn btn-success text-white">New Photo</a></h3>
+
+@for (int i = 0; i < Model.Count(); i += 3)
+{
+    <div class="row">
+        @foreach (var item in Model.Skip(i).Take(3))
+        {
+            <div class="col-md-4 portfolio-item">
+                    <img class="img-responsive" src="/Images/thumbnails/@item.Name" alt="@item.Title">
+
+                <p>@Html.DisplayFor(modelItem => item.Title)</p>
+                <div>
+                    <a onclick="showInPopup('@Url.Action("EditPhoto","Admin",new {id=item.Index},Context.Request.Scheme)','Update Photo')" class="btn btn-info text-white">Edit</a>
+                    <form asp-action="DeletePhoto" asp-route-id="@item.Index" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                        <input type="hidden" asp-for="@item.Name" value="@item.Name" class="form-control" />
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+}  

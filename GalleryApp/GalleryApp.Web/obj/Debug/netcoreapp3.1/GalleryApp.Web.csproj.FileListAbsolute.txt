@@ -11,7 +11,6 @@ C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\o
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\GalleryApp.Web.TagHelpers.output.cache
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\GalleryApp.Web.RazorCoreGenerate.cache
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -179,16 +178,6 @@ C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\b
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Genre\Create.cshtml.g.cs
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Genre\Index.cshtml.g.cs
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Genre\Get.cshtml.g.cs
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Genre\Delete.cshtml.g.cs
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Photo\Index.cshtml.g.cs
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Photo\Upload.cshtml.g.cs
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Photo\Get.cshtml.g.cs
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Photo\Delete.cshtml.g.cs
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Genre\Update.cshtml.g.cs
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Photo\Update.cshtml.g.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\SixLabors.ImageSharp.dll
@@ -198,3 +187,11 @@ C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\o
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Photos.cshtml.g.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\_ViewAllGenres.cshtml.g.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddOrEditGenre.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\_ViewAllPhotos.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EditPhoto.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddPhoto.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Photo\Genre.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddOrEditUser.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Users.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\_ViewAllUsers.cshtml.g.cs
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs

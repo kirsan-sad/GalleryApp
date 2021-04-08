@@ -1,0 +1,51 @@
+﻿@model GalleryApp.Domain.Models.Photo
+
+
+@{ Layout = null; }
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddPhoto" asp-route-id="@Model.Index" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Index" />
+            <input type="hidden" asp-for="Name" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="@Model.Genres" class="control-label"></label>
+                        @foreach (var genre in ViewBag.Genres)
+                        {
+                            <p><input type="checkbox" name="GenresId" value="@genre.Index" />@genre.Name</p>
+                        }
+                        <span asp-validation-for="Genres" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="file" name="uploadedFile" onchange="loadFile(event)" /><br>
+                <img id="output" width="200" />
+                <script>
+                    var loadFile = function (event) {
+                        var output = document.getElementById('output');
+                        output.src = URL.createObjectURL(event.target.files[0]);
+                        output.onload = function () {
+                            URL.revokeObjectURL(output.src)
+                        }
+                    };
+                </script>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

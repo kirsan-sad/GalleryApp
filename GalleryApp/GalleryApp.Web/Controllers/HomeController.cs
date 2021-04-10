@@ -9,6 +9,7 @@ using GalleryApp.Web.Models;
 using GalleryApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using GalleryApp.Domain.Interfaces;
+using GalleryApp.Domain.Models;
 
 namespace GalleryApp.Web.Controllers
 {
@@ -32,6 +33,22 @@ namespace GalleryApp.Web.Controllers
             result = (photos.Count == 0) ? NotFound() : result = View(photos);
 
             return result;
+        }
+
+        public async Task<IActionResult> Search(string photoTitle)
+        {
+            if (photoTitle != null)
+            {
+                ICollection<Photo> photoList = await _repository.GetPhotosAsync();
+                var photoData = photoList.Where(p => p.Title.Contains(photoTitle))
+                                          .Select(p => p).ToList();
+
+                return View(photoData);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

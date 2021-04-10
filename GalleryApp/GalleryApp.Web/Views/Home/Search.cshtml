@@ -1,0 +1,9 @@
+﻿@model IEnumerable<GalleryApp.Domain.Models.Photo>
+
+<div id="result">
+    @foreach (var photo in Model)
+    {
+        <img src="~/Images/thumbnails/@photo.Name">
+
+    }
+</div>

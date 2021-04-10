@@ -106,3 +106,7 @@ body {
 .hide {
     display: none;
 }
+
+.ui-helper-hidden-accessible {
+    display: none;
+}

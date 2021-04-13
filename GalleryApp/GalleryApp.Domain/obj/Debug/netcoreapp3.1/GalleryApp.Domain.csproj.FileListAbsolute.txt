@@ -2,8 +2,8 @@ C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Domai
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Domain\bin\Debug\netcoreapp3.1\GalleryApp.Domain.dll
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Domain\bin\Debug\netcoreapp3.1\GalleryApp.Domain.pdb
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Domain\obj\Debug\netcoreapp3.1\GalleryApp.Domain.csprojAssemblyReference.cache
-C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Domain\obj\Debug\netcoreapp3.1\GalleryApp.Domain.csproj.CoreCompileInputs.cache
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Domain\obj\Debug\netcoreapp3.1\GalleryApp.Domain.AssemblyInfoInputs.cache
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Domain\obj\Debug\netcoreapp3.1\GalleryApp.Domain.AssemblyInfo.cs
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Domain\obj\Debug\netcoreapp3.1\GalleryApp.Domain.dll
 C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Domain\obj\Debug\netcoreapp3.1\GalleryApp.Domain.pdb
+C:\Users\Анон\source\repos\kirsan-sad\GalleryApp\GalleryApp\GalleryApp.Domain\obj\Debug\netcoreapp3.1\GalleryApp.Domain.csproj.CoreCompileInputs.cache

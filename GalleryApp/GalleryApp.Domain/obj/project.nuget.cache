@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "FusSapZWrX50a/d2EPxt4I/i6C3FQFWXtAWbEq4Mt007eR6iEtMKiVgC/4a0ANLdJuq+Rn8rR2FHwYyxTHWCWQ==",
+  "dgSpecHash": "xFUfHJ+8pmtlZBdDolx/xBqQzDsuSg6FGfSRIgCNo+XHmgCMnYuplhMEoq4YrVS37DMRZujGhltA0JpAiGHZCQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\GalleryApp.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Анон\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.5\\microsoft.aspnetcore.http.features.5.0.5.nupkg.sha512",
+    "C:\\Users\\Анон\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\Анон\\.nuget\\packages\\sixlabors.imagesharp\\1.0.3\\sixlabors.imagesharp.1.0.3.nupkg.sha512",
+    "C:\\Users\\Анон\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512",
+    "C:\\Users\\Анон\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

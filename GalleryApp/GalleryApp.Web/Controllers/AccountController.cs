@@ -49,9 +49,6 @@ namespace GalleryApp.Web.Controllers
                 {
                     await Authenticate(model.Login);
 
-                    //return RedirectToAction("Index", "Home");
-                    //return Redirect(Request.UrlReferrer.ToString());
-
                     if (Url.IsLocalUrl(ViewBag.ReturnUrl))
                         return Redirect(ViewBag.ReturnUrl);
                 }
@@ -75,6 +72,7 @@ namespace GalleryApp.Web.Controllers
             if (ModelState.IsValid)
             {
                 User user = await _repository.RegisterAsync(model);
+
                 if (user != null)
                 {
                     await Authenticate(model.Login);

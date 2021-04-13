@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<GalleryApp.Domain.Models.Photo>
 
-<h3><a onclick="showInPopup('@Url.Action("AddPhoto","Admin",new {id=0},Context.Request.Scheme)','New Photo')" class="btn btn-success text-white">New Photo</a></h3>
+<h3><a onclick="showInPopup('@Url.Action("AddPhoto","Admin",new {id=0},Context.Request.Scheme)','New Photo')" class="btn btn-success text-white" style="margin: 10px;">New Photo</a></h3>
 
 @for (int i = 0; i < Model.Count(); i += 3)
 {

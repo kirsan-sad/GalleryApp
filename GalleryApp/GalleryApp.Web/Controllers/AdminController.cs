@@ -11,25 +11,30 @@ using Microsoft.AspNetCore.Mvc;
 using static GalleryApp.Web.Helper;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GalleryApp.Web.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly IPhotoRepository _photoRepository;
         private readonly IGenreRepository _genreRepository;
         private readonly IUserRepository _userRepository;
         private readonly IWebHostEnvironment _appEnvironment;
+        private readonly IPhotoService _photoService;
 
         public AdminController(IPhotoRepository photoRepository,
                                IGenreRepository genreRepository,
                                IUserRepository userRepository,
-                               IWebHostEnvironment appEnvironment)
+                               IWebHostEnvironment appEnvironment,
+                               IPhotoService photoService)
         {
             _photoRepository = photoRepository ?? throw new ArgumentNullException(nameof(photoRepository));
             _genreRepository = genreRepository ?? throw new ArgumentNullException(nameof(genreRepository));
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _appEnvironment = appEnvironment ?? throw new ArgumentNullException(nameof(appEnvironment));
+            _photoService = photoService ?? throw new ArgumentNullException(nameof(photoService));
         }
 
         public async Task<IActionResult> Index()
@@ -54,11 +59,8 @@ namespace GalleryApp.Web.Controllers
             else
             {
                 var genre = await _genreRepository.GetByIdAsync(id);
-                if (genre == null)
-                {
-                    return NotFound();
-                }
-                return View(genre);
+
+                return genre == null ? NotFound() : (IActionResult)View(genre);
             }
         }
 
@@ -115,11 +117,9 @@ namespace GalleryApp.Web.Controllers
 
             var photo = await _photoRepository.GetByIdAsync(id);
 
-            if (photo == null)
-            {
-                return NotFound();
-            }
-            return View(photo);
+            return photo == null
+            ? NotFound()
+            : (IActionResult)View(photo);
         }
 
         [HttpPost]
@@ -154,31 +154,9 @@ namespace GalleryApp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "images");
-                string uploadsThumbnailsFolder = Path.Combine(_appEnvironment.WebRootPath, "images/thumbnails");
-                string uniqueFileName = Guid.NewGuid().ToString() + ".jpg";
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                string thumbnailsFilePath = Path.Combine(uploadsThumbnailsFolder, uniqueFileName);
+                var modelForUploading = await _photoService.UploadingImageOnServer(_appEnvironment.WebRootPath, model, uploadedFile);
 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                using (var image = Image.Load(uploadedFile.OpenReadStream()))
-                {
-                    await uploadedFile.CopyToAsync(fileStream);
-
-                    var clone = image.Clone(x =>
-                    x.Resize(
-                             new ResizeOptions()
-                             {
-                                 Mode = ResizeMode.Max,
-                                 Size = new Size() { Width = 250 }
-                             }
-                            ));
-                    await clone.SaveAsync(thumbnailsFilePath);
-                }
-
-                model.Name = uniqueFileName;
-
-                var isUploaded = await _photoRepository.TryUploadAsync(model, genresId);
+                var isUploaded = await _photoRepository.TryUploadAsync(modelForUploading, genresId);
 
                 if (!isUploaded)
                     return NotFound();
@@ -194,28 +172,18 @@ namespace GalleryApp.Web.Controllers
         public async Task<IActionResult> PhotoDeleteConfirmed(int id)
         {
             var photo = await _photoRepository.GetByIdAsync(id);
+            var photoName = photo.Name;
 
-            string uploadsFolder = Path.Combine(_appEnvironment.WebRootPath, "images");
-            string uploadsThumbnailsFolder = Path.Combine(_appEnvironment.WebRootPath, "images/thumbnails");
-            string filePath = Path.Combine(uploadsFolder, photo.Name);
-            string thumbnailsFilePath = Path.Combine(uploadsThumbnailsFolder, photo.Name);
+            var isEntityDeleted = await _photoRepository.TryDeleteAsync(id);
 
-            var isDeleted = await _photoRepository.TryDeleteAsync(id);
-
-            if (!isDeleted)
+            if (!isEntityDeleted)
                 return NotFound();
             else
             {
-                FileInfo file = new FileInfo(filePath);
-                FileInfo filethumb = new FileInfo(thumbnailsFilePath);
+                var isImagesDeleted = _photoService.TryDeleteImageFromServer(_appEnvironment.WebRootPath, photoName);
 
-                if (file.Exists && filethumb.Exists)
-                {
-                    file.Delete();
-                    filethumb.Delete();
-                }
-                else
-                    throw new ArgumentNullException(nameof(file));
+                if (!isImagesDeleted)
+                    return NotFound("Files not found");
             }
 
             return Json(new { html = Helper.RenderRazorViewToString(this, "_ViewAllPhotos", await _photoRepository.GetPhotosAsync()) });
@@ -235,11 +203,10 @@ namespace GalleryApp.Web.Controllers
             else
             {
                 var user = await _userRepository.GetByIdAsync(id);
-                if (user == null)
-                {
-                    return NotFound();
-                }
-                return View(user);
+
+                return user == null
+                    ? NotFound()
+                    : (IActionResult)View(user);
             }
         }
 

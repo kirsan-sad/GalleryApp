@@ -16,18 +16,14 @@ namespace GalleryApp.Web.Controllers
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-
         [HttpGet]
         public async Task<IActionResult> Genre([Required]int id)
         {
-            IActionResult result;
-
             var photos = await _repository.GetPhotosByGenreAsync(id);
 
-            result = (photos.Count == 0) ? NotFound() : result = View(photos);
-
-            return result;
+            return photos.Count == 0
+                ? NotFound()
+                : (IActionResult)View(photos);
         }
-
     }
 }

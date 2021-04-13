@@ -1,15 +1,13 @@
-﻿using System;
+﻿using GalleryApp.Domain.Interfaces;
+using GalleryApp.Domain.Models;
+using GalleryApp.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using GalleryApp.Web.Models;
-using GalleryApp.Infrastructure;
-using Microsoft.EntityFrameworkCore;
-using GalleryApp.Domain.Interfaces;
-using GalleryApp.Domain.Models;
 
 namespace GalleryApp.Web.Controllers
 {
@@ -20,19 +18,17 @@ namespace GalleryApp.Web.Controllers
 
         public HomeController(ILogger<HomeController> logger, IPhotoRepository repository)
         {
-            _logger = logger;
-            _repository = repository;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public async Task<IActionResult> Index()
         {
-            IActionResult result;
+            var photos = await _repository.GetLastPhotosAsync(4);
 
-            var photos = await _repository.GetLastPhotosAsync(5);
-
-            result = (photos.Count == 0) ? NotFound() : result = View(photos);
-
-            return result;
+            return photos.Count == 0 
+                ? NotFound() 
+                : (IActionResult)View(photos);
         }
 
         public async Task<IActionResult> Search(string photoTitle)

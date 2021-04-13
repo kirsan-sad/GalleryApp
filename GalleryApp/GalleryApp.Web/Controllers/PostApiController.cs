@@ -37,7 +37,6 @@ namespace GalleryApp.Web.Controllers
             {
                 return BadRequest();
             }
-
         }
     }
 }

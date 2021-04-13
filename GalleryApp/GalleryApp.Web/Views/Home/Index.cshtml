@@ -4,23 +4,23 @@
 }
 
 <div class="text-center">
-    <table class="table">
+    <table class="table table-dark table-transp">
         @foreach (var genre in Model)
         {
-            <thead>
+            <thead class="transp1">
                 <tr>
-                    <th>
-                        <a asp-controller="Photo" asp-action="Genre" asp-route-id="@genre.GenreId">@genre.Genre</a>
+                    <th colspan="4">
+                        <a asp-controller="Photo" asp-action="Genre" asp-route-id="@genre.GenreId" class="text-uppercase text-white font-weight-normal h4">@genre.Genre</a>
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="transp2">
                 <tr>
                     @foreach (var photo in genre.Photos)
                     {
 
                         <td>
-                            <img style="width:200px;height:200px" src="/Images/@photo.Name">
+                            <img src="/Images/thumbnails/@photo.Name">
                         </td>
 
                     }

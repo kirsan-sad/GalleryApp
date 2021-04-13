@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GalleryApp.Domain.Interfaces;
+using GalleryApp.Domain.Services;
 using GalleryApp.Infrastructure;
 using GalleryApp.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -35,6 +36,7 @@ namespace GalleryApp.Web
             services.AddTransient<IPhotoRepository, PhotoRepository>();
             services.AddTransient<IGenreRepository, GenreRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IPhotoService, PhotoService>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 {

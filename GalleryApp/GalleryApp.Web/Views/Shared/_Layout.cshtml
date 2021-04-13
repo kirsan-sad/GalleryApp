@@ -14,45 +14,43 @@
             position: relative;
             overflow: hidden;
         }
-
-            .am-wrapper img {
-                position: absolute;
-                outline: none;
-            }
+        .am-wrapper img {
+            position: absolute;
+            outline: none;
+        }
     </style>
 </head>
 <body>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#photoTitle").autocomplete({
-                    source: 'api/postapi/search'
-                });
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#photoTitle").autocomplete({
+                source: '/api/postapi/search'
             });
-
-        </script>
+        });
+    </script>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GalleryApp.Web</a>
+                <form asp-controller="Home" asp-action="Search">
+                    <div class="form-outline">
+                        <input type="search" name="photoTitle" id="photoTitle" class="form-control" placeholder="Search..." aria-label="Search" />
+                    </div>
+                </form>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="nav navbar-nav navbar-right" >
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="Index">Admin.</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home.</a>
                         </li>
                     </ul>
-                    <form asp-controller="Home" asp-action="Search">
-                        <input type="text" name="photoTitle" id="photoTitle" />
-                        <button type="submit">search</button>
-                    </form>
                 </div>
             </div>
         </nav>

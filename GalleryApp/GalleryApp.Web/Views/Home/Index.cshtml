@@ -16,11 +16,13 @@
             </thead>
             <tbody class="transp2">
                 <tr>
-                    @foreach (var photo in genre.Photos)
+                    @foreach (var img in genre.Photos)
                     {
 
                         <td>
-                            <img src="/Images/thumbnails/@photo.Name">
+                            <a data-fancybox="gallery" href="/Images/@img.Name">
+                                <img class="imgall" src="/Images/thumbnails/@img.Name" alt="@img.Title">
+                            </a>
                         </td>
 
                     }
@@ -29,3 +31,4 @@
         }
     </table>
 </div>
+<script src="https://snipp.ru/cdn/fancybox/3.5.7/jquery.fancybox.min.js"></script>

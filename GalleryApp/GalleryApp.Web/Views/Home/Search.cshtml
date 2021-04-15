@@ -1,9 +1,12 @@
 ﻿@model IEnumerable<GalleryApp.Domain.Models.Photo>
 
-<div id="result">
-    @foreach (var photo in Model)
-    {
-        <img src="~/Images/thumbnails/@photo.Name">
+    <div id="result">
+        @foreach (var img in Model)
+        {
+            <a data-fancybox="gallery" href="/Images/@img.Name">
+                <img class="imgall" src="/Images/thumbnails/@img.Name" alt="@img.Title">
+            </a>
 
-    }
-</div>
+        }
+    </div>
+    <script src="https://snipp.ru/cdn/fancybox/3.5.7/jquery.fancybox.min.js"></script>

@@ -39,14 +39,16 @@ namespace GalleryApp.Domain.Services
             {
                 await uploadedFile.CopyToAsync(fileStream);
 
+                int line = image.Height < image.Width ? image.Height : image.Width;
+
                 var clone = image.Clone(x =>
-                x.Resize(
-                         new ResizeOptions()
-                         {
-                             Mode = ResizeMode.Max,
-                             Size = new Size() { Width = 250 }
-                         }
-                        ));
+                x.Crop(line, line)
+                .Resize(new ResizeOptions()
+                {
+                    Mode = ResizeMode.Max,
+                    Size = new Size() { Width = 260 }
+                }));
+
                 await clone.SaveAsync(thumbnailsPath);
             }
 

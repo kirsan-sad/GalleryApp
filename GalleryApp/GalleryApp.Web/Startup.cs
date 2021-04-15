@@ -41,7 +41,7 @@ namespace GalleryApp.Web
                 .AddCookie(options => //CookieAuthenticationOptions
                 {
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-                    options.ExpireTimeSpan = TimeSpan.FromSeconds(60);
+                    options.ExpireTimeSpan = TimeSpan.FromSeconds(3000);
                 });
             services.AddControllersWithViews();
         }

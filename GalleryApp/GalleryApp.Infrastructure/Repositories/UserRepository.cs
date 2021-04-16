@@ -61,9 +61,10 @@ namespace GalleryApp.Infrastructure.Repositories
             {
                 var userExistsEntityExist = await context.Users
                     .AsNoTracking()
-                    .FirstOrDefaultAsync(userEntity => userEntity.Login == modelForLogin.Login);
+                    .FirstOrDefaultAsync(userEntity => userEntity.Login == modelForLogin.Login 
+                    && userEntity.Password == modelForLogin.Password);
 
-                result = (userExistsEntityExist == null)? null : result = _mapper.Map<User>(userExistsEntityExist);
+                result = userExistsEntityExist == null? null : _mapper.Map<User>(userExistsEntityExist);
             }
 
             return result;

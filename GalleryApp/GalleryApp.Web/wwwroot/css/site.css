@@ -138,12 +138,20 @@ body {
     background: rgba(0, 0, 0, 0.7);
 }
 
-.table-transp div.row {
-    text-align: center;
-    color: white;
-    padding: 15px;
- }
+    .table-transp div.row {
+        text-align: center;
+        color: white;
+        padding: 15px;
+    }
 
-.imgall{
+.imgall {
     margin: 6px;
+}
+
+#validationError {
+    color: red;
+}
+
+#validationError li {
+    list-style-type: none;
 }

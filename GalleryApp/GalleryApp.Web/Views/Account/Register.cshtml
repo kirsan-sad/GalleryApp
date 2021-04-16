@@ -1,7 +1,6 @@
 ﻿@model GalleryApp.Domain.Models.User
 
 <form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
-    <div class="validation" asp-validation-summary="ModelOnly"></div>
     <div class="col-md-4 mx-auto">
         <div class="card">
             <div class="card-body">
@@ -36,6 +35,7 @@
                         <div class="form-group">
                             <input type="submit" value="Register" class="btn btn-info btn-block btn-lg" />
                         </div>
+                        <div class="validation" id="validationError" asp-validation-summary="ModelOnly"></div>
                     </div>
                 </div>
             </div>

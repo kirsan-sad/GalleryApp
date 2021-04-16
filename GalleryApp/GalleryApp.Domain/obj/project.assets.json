@@ -193,11 +193,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\GalleryApp.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\GalleryApp.Domain.csproj",
       "projectName": "GalleryApp.Domain",
-      "projectPath": "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\GalleryApp.Domain.csproj",
+      "projectPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\GalleryApp.Domain.csproj",
       "packagesPath": "C:\\Users\\Анон\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Анон\\AppData\\Roaming\\NuGet\\NuGet.Config",

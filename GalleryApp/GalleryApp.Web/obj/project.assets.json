@@ -9354,11 +9354,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Web\\GalleryApp.Web.csproj",
+      "projectUniqueName": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Web\\GalleryApp.Web.csproj",
       "projectName": "GalleryApp.Web",
-      "projectPath": "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Web\\GalleryApp.Web.csproj",
+      "projectPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Web\\GalleryApp.Web.csproj",
       "packagesPath": "C:\\Users\\Анон\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Web\\obj\\",
+      "outputPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Анон\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9374,11 +9374,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\GalleryApp.Domain.csproj": {
-              "projectPath": "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\GalleryApp.Domain.csproj"
+            "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\GalleryApp.Domain.csproj": {
+              "projectPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\GalleryApp.Domain.csproj"
             },
-            "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Анон\\source\\repos\\kirsan-sad\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.Infrastructure.csproj"
+            "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.Infrastructure.csproj"
             }
           }
         }

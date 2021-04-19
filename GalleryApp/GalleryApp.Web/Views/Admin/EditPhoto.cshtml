@@ -20,9 +20,16 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="@Model.Genres" class="control-label"></label>
-                        @foreach (var genre in ViewBag.Genres)
+                        @foreach (var genre in (ViewBag.Genres as IEnumerable<GalleryApp.Domain.Models.Genre>))
                         {
-                            <p><input type="checkbox" name="GenresId" value="@genre.Index" />@genre.Name</p>
+                                @if ((ViewBag.GenresSelected as IEnumerable<int>).Contains(genre.Index))
+                                {
+                                    <p><input type="checkbox" name="GenresId" value="@genre.Index" checked="checked" /> @genre.Name</p>
+                                }
+                                else
+                                {
+                                    <p><input type="checkbox" name="GenresId" value="@genre.Index" /> @genre.Name</p>
+                                }
                         }
                         <span asp-validation-for="Genres" class="text-danger"></span>
                     </div>

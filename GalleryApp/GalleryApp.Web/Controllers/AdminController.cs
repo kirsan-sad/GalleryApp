@@ -116,6 +116,7 @@ namespace GalleryApp.Web.Controllers
             ViewBag.Genres = await _genreRepository.GetGenresAsync();
 
             var photo = await _photoRepository.GetByIdAsync(id);
+            ViewBag.GenresSelected = photo.Genres.Select(g => g.Index).ToList();
 
             return photo == null
             ? NotFound()

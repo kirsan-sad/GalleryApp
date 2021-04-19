@@ -40,7 +40,7 @@ namespace GalleryApp.Infrastructure.Repositories
         {
             Photo result;
 
-            var photoEntityExist = await _context.Photos
+            var photoEntityExist = await _context.Photos.Include(g => g.Genres)
                 .FirstOrDefaultAsync(photoEntity => photoEntity.Id == id);
 
             if (photoEntityExist == null)
@@ -90,7 +90,8 @@ namespace GalleryApp.Infrastructure.Repositories
                 photo.Genres = _context.Genres
                     .Where(genre => genresId.Contains(genre.Id)).ToList();
                 _context.Update(photo);
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 //_context.Photos.Update(entityForUpdate);
                 //await _context.SaveChangesAsync();
             }

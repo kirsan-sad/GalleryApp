@@ -15,17 +15,19 @@ namespace GalleryApp.Domain.Services
     {
         private const string _jpegFileExtension = ".jpeg";
         private const int _resizeWidth = 260;
+        private const string _imagesFolder = "images";
+        private const string _thumbnailsFolder = "images\\thumbnails";
 
         private string GetFullImagePath(string WebRootPath, string uniqueFileName)
         {
-            string uploadsFolder = Path.Combine(WebRootPath, "images");
+            string uploadsFolder = Path.Combine(WebRootPath, _imagesFolder);
 
             return Path.Combine(uploadsFolder, uniqueFileName);
         }
 
         private string GetthumbnailsPath(string WebRootPath, string uniqueFileName)
         {
-            string uploadThumbnailsFolder = Path.Combine(WebRootPath, "images\\thumbnails");
+            string uploadThumbnailsFolder = Path.Combine(WebRootPath, _thumbnailsFolder);
 
             return Path.Combine(uploadThumbnailsFolder, uniqueFileName);
         }
@@ -54,7 +56,7 @@ namespace GalleryApp.Domain.Services
         {
             int line = image.Height < image.Width ? image.Height : image.Width;
 
-            var clone = image.Clone(x =>
+            var clone = image.Clone(x => 
             x.Crop(line, line)
             .Resize(new ResizeOptions()
             {
@@ -83,11 +85,11 @@ namespace GalleryApp.Domain.Services
                     filethumb.Delete();
                     success = true;
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    throw;
+                    string typeString = ex.GetType().FullName;
                 }
-                
+
             }
             else
                 throw new ArgumentNullException(nameof(file));

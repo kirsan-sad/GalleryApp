@@ -123,7 +123,6 @@ namespace GalleryApp.Infrastructure.Repositories
                 catch (Exception ex)
                 {
                     string typeString = ex.GetType().FullName;
-                    throw;
                 }
             }
 

@@ -25,8 +25,8 @@
       "GalleryApp.Web/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
+          "GalleryApp.DataStorage": "1.0.0",
           "GalleryApp.Domain": "1.0.0",
-          "GalleryApp.Infrastructure": "1.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.4",
           "Microsoft.EntityFrameworkCore.Sqlite": "3.1.12",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.12",
@@ -2529,19 +2529,7 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
-      "GalleryApp.Domain/1.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Http.Features": "5.0.5",
-          "SixLabors.ImageSharp": "1.0.3"
-        },
-        "runtime": {
-          "GalleryApp.Domain.dll": {}
-        },
-        "compile": {
-          "GalleryApp.Domain.dll": {}
-        }
-      },
-      "GalleryApp.Infrastructure/1.0.0": {
+      "GalleryApp.DataStorage/1.0.0": {
         "dependencies": {
           "AutoMapper": "10.1.1",
           "GalleryApp.Domain": "1.0.0",
@@ -2553,10 +2541,22 @@
           "SixLabors.ImageSharp": "1.0.3"
         },
         "runtime": {
-          "GalleryApp.Infrastructure.dll": {}
+          "GalleryApp.DataStorage.dll": {}
         },
         "compile": {
-          "GalleryApp.Infrastructure.dll": {}
+          "GalleryApp.DataStorage.dll": {}
+        }
+      },
+      "GalleryApp.Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.5",
+          "SixLabors.ImageSharp": "1.0.3"
+        },
+        "runtime": {
+          "GalleryApp.Domain.dll": {}
+        },
+        "compile": {
+          "GalleryApp.Domain.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -5366,12 +5366,12 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
-    "GalleryApp.Domain/1.0.0": {
+    "GalleryApp.DataStorage/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "GalleryApp.Infrastructure/1.0.0": {
+    "GalleryApp.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -2902,21 +2902,7 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "GalleryApp.Domain/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "Microsoft.AspNetCore.Http.Features": "5.0.5",
-          "SixLabors.ImageSharp": "1.0.3"
-        },
-        "compile": {
-          "bin/placeholder/GalleryApp.Domain.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GalleryApp.Domain.dll": {}
-        }
-      },
-      "GalleryApp.Infrastructure/1.0.0": {
+      "GalleryApp.DataStorage/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -2930,10 +2916,24 @@
           "SixLabors.ImageSharp": "1.0.3"
         },
         "compile": {
-          "bin/placeholder/GalleryApp.Infrastructure.dll": {}
+          "bin/placeholder/GalleryApp.DataStorage.dll": {}
         },
         "runtime": {
-          "bin/placeholder/GalleryApp.Infrastructure.dll": {}
+          "bin/placeholder/GalleryApp.DataStorage.dll": {}
+        }
+      },
+      "GalleryApp.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.5",
+          "SixLabors.ImageSharp": "1.0.3"
+        },
+        "compile": {
+          "bin/placeholder/GalleryApp.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GalleryApp.Domain.dll": {}
         }
       }
     }
@@ -9324,22 +9324,22 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "GalleryApp.DataStorage/1.0.0": {
+      "type": "project",
+      "path": "../GalleryApp.Infrastructure/GalleryApp.DataStorage.csproj",
+      "msbuildProject": "../GalleryApp.Infrastructure/GalleryApp.DataStorage.csproj"
+    },
     "GalleryApp.Domain/1.0.0": {
       "type": "project",
       "path": "../GalleryApp.Domain/GalleryApp.Domain.csproj",
       "msbuildProject": "../GalleryApp.Domain/GalleryApp.Domain.csproj"
-    },
-    "GalleryApp.Infrastructure/1.0.0": {
-      "type": "project",
-      "path": "../GalleryApp.Infrastructure/GalleryApp.Infrastructure.csproj",
-      "msbuildProject": "../GalleryApp.Infrastructure/GalleryApp.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.1",
+      "GalleryApp.DataStorage >= 1.0.0",
       "GalleryApp.Domain >= 1.0.0",
-      "GalleryApp.Infrastructure >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.4",
       "Microsoft.EntityFrameworkCore.Sqlite >= 3.1.12",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.12",
@@ -9377,8 +9377,8 @@
             "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\GalleryApp.Domain.csproj": {
               "projectPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Domain\\GalleryApp.Domain.csproj"
             },
-            "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.Infrastructure.csproj"
+            "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.DataStorage.csproj": {
+              "projectPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.DataStorage.csproj"
             }
           }
         }

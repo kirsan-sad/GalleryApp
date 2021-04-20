@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wOgwgCMOxek3d4EfeJNXPXoAgRJFFtUH8Dro1FlKqFuwgWLGn6R7e9NYfj2XzxVkaZlO7mdeeoB0SJMh0Y0rXg==",
+  "dgSpecHash": "1ZGBXlR4jiOwgEmZF19YfUt2oqJ20Cw4utThXqLmekXOFUpNiRNzNsAOpqbWMrPjzHCufpsAT84Bn2ZvGALA8A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.DataStorage.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Анон\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Анон\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

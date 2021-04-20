@@ -28,7 +28,8 @@ namespace GalleryApp.Infrastructure.Repositories
         {
             ICollection<Photo> allPhotos;
 
-            var allPhotoEntitiesByGenre = _context.Genres.Where(genreIndex => genreIndex.Id == genreId)
+            var allPhotoEntitiesByGenre = _context.Genres
+                .Where(genreIndex => genreIndex.Id == genreId)
                 .SelectMany(photos => photos.Photos);
 
             allPhotos = await _mapper.ProjectTo<Photo>(allPhotoEntitiesByGenre).ToListAsync();
@@ -40,7 +41,8 @@ namespace GalleryApp.Infrastructure.Repositories
         {
             Photo result;
 
-            var photoEntityExist = await _context.Photos.Include(g => g.Genres)
+            var photoEntityExist = await _context.Photos
+                .Include(g => g.Genres)
                 .FirstOrDefaultAsync(photoEntity => photoEntity.Id == id);
 
             if (photoEntityExist == null)
@@ -76,7 +78,8 @@ namespace GalleryApp.Infrastructure.Repositories
         {
             bool success = true;
 
-            var photoEntityExist = await _context.Photos.Include(g => g.Genres)
+            var photoEntityExist = await _context.Photos
+                .Include(g => g.Genres)
                 .FirstOrDefaultAsync(photoEntity => photoEntity.Id == modelForUpdate.Index);
 
             if (photoEntityExist == null)
@@ -88,12 +91,11 @@ namespace GalleryApp.Infrastructure.Repositories
                 var photo = _context.Photos.Update(entityForUpdate).Entity;
                 await _context.SaveChangesAsync();
 
-                // photo.Genres = _context.Genres
-                //    .Where(genre => genresId.Contains(genre.Id)).ToList();
-                //_context.Update(photo);
                 var existGenres = await _context.Photos
                     .Where(p => p.Id == modelForUpdate.Index)
-                    .SelectMany(g => g.Genres).Select(g => g.Id).ToListAsync();
+                    .SelectMany(g => g.Genres)
+                    .Select(g => g.Id)
+                    .ToListAsync();
 
                 foreach (var genre in _context.Genres)
                 {
@@ -108,13 +110,11 @@ namespace GalleryApp.Infrastructure.Repositories
                     {
                         if (existGenres.Contains(genre.Id))
                         {
-                            //var genreToRemove = existGenres.Select(g => g == genre.Id);
                             var genreEntityToRemove = _mapper.Map<GenreEntity>(genre);
                             photo.Genres.Remove(genreEntityToRemove);
                         }
                     }
                 }
-
 
                 try
                 {
@@ -125,9 +125,6 @@ namespace GalleryApp.Infrastructure.Repositories
                     string typeString = ex.GetType().FullName;
                     throw;
                 }
-                //_context.SaveChanges();
-                //_context.Photos.Update(entityForUpdate);
-                //await _context.SaveChangesAsync();
             }
 
             return success;
@@ -140,7 +137,7 @@ namespace GalleryApp.Infrastructure.Repositories
             var photoEntityExist = await _context.Photos
                 .AnyAsync(photoEntity => photoEntity.Name == photoForUploading.Name);
 
-            if (photoEntityExist == true) //photoEntityExists, проверить жанр
+            if (photoEntityExist == true)
                 success = false;
             else
             {
@@ -149,7 +146,10 @@ namespace GalleryApp.Infrastructure.Repositories
                 await _context.SaveChangesAsync();
 
                 photo.Genres = _context.Genres
-                    .Where(genre => genresId.Contains(genre.Id)).ToList();
+                    .Where(genre => genresId
+                    .Contains(genre.Id))
+                    .ToList();
+
                 _context.Update(photo);
                 await _context.SaveChangesAsync();
 
@@ -183,7 +183,9 @@ namespace GalleryApp.Infrastructure.Repositories
                 {
                     GenreId = genre.Id,
                     Genre = genre.Name,
-                    Photos = _mapper.Map<IEnumerable<Photo>>(genre.Photos.OrderByDescending(x => x.Id).Take(numberOfPhotos)).AsEnumerable()
+                    Photos = _mapper.Map<IEnumerable<Photo>>(genre.Photos.OrderByDescending(x => x.Id)
+                    .Take(numberOfPhotos))
+                    .AsEnumerable()
                     .ToList()
                 }).ToListAsync();
 

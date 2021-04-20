@@ -13,6 +13,9 @@ namespace GalleryApp.Domain.Services
 {
     public class PhotoService : IPhotoService
     {
+        private const string _jpegFileExtension = ".jpeg";
+        private const int _resizeWidth = 260;
+
         private string GetFullImagePath(string WebRootPath, string uniqueFileName)
         {
             string uploadsFolder = Path.Combine(WebRootPath, "images");
@@ -29,7 +32,7 @@ namespace GalleryApp.Domain.Services
 
         public async Task<Photo> UploadingImageOnServer(string WebRootPath, Photo modelForUploading, IFormFile uploadedFile)
         {
-            string uniqueFileName = Guid.NewGuid().ToString() + ".jpg";
+            string uniqueFileName = Guid.NewGuid().ToString() + _jpegFileExtension;
 
             var fullImagePath = GetFullImagePath(WebRootPath, uniqueFileName);
             var thumbnailsPath = GetthumbnailsPath(WebRootPath, uniqueFileName);
@@ -39,22 +42,27 @@ namespace GalleryApp.Domain.Services
             {
                 await uploadedFile.CopyToAsync(fileStream);
 
-                int line = image.Height < image.Width ? image.Height : image.Width;
-
-                var clone = image.Clone(x =>
-                x.Crop(line, line)
-                .Resize(new ResizeOptions()
-                {
-                    Mode = ResizeMode.Max,
-                    Size = new Size() { Width = 260 }
-                }));
-
-                await clone.SaveAsync(thumbnailsPath);
+                GetThumbnail(image, thumbnailsPath);
             }
 
             modelForUploading.Name = uniqueFileName;
 
             return modelForUploading;
+        }
+
+        private async void GetThumbnail(SixLabors.ImageSharp.Image image, string thumbnailsPath)
+        {
+            int line = image.Height < image.Width ? image.Height : image.Width;
+
+            var clone = image.Clone(x =>
+            x.Crop(line, line)
+            .Resize(new ResizeOptions()
+            {
+                Mode = ResizeMode.Max,
+                Size = new Size() { Width = _resizeWidth }
+            }));
+
+            await clone.SaveAsync(thumbnailsPath);
         }
 
         public bool TryDeleteImageFromServer(string WebRootPath, string photoName)
@@ -69,9 +77,17 @@ namespace GalleryApp.Domain.Services
 
             if (file.Exists && filethumb.Exists)
             {
-                file.Delete();
-                filethumb.Delete();
-                success = true;
+                try
+                {
+                    file.Delete();
+                    filethumb.Delete();
+                    success = true;
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+                
             }
             else
                 throw new ArgumentNullException(nameof(file));

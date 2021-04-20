@@ -78,6 +78,7 @@ namespace GalleryApp.Infrastructure.Repositories
             {
                 var userExistsEntityExist = await context.Users
                     .FirstOrDefaultAsync(userEntity => userEntity.Login == modelForRegister.Login);
+
                 if (userExistsEntityExist != null)
                     result = null;
                 else

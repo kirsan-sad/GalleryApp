@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GalleryApp.Domain\GalleryApp.Domain.csproj" />
-    <ProjectReference Include="..\GalleryApp.Infrastructure\GalleryApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\GalleryApp.Infrastructure\GalleryApp.DataStorage.csproj" />
   </ItemGroup>
 
 </Project>

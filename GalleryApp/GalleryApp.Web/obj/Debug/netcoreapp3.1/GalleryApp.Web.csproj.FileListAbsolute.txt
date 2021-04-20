@@ -357,9 +357,7 @@ C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\ne
 C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\GalleryApp.Domain.dll
-C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\GalleryApp.Infrastructure.dll
 C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\GalleryApp.Domain.pdb
-C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\GalleryApp.Infrastructure.pdb
 C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\GalleryApp.Web.csprojAssemblyReference.cache
 C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\GalleryApp.Web.csproj.CoreCompileInputs.cache
 C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\GalleryApp.Web.MvcApplicationPartsAssemblyInfo.cache
@@ -400,3 +398,5 @@ C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\ne
 C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\GalleryApp.Web.dll
 C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\GalleryApp.Web.pdb
 C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\obj\Debug\netcoreapp3.1\GalleryApp.Web.genruntimeconfig.cache
+C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\GalleryApp.DataStorage.dll
+C:\Users\Анон\source\repos\GalleryApp\GalleryApp\GalleryApp.Web\bin\Debug\netcoreapp3.1\GalleryApp.DataStorage.pdb

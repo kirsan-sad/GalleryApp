@@ -6246,9 +6246,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.Infrastructure.csproj",
-      "projectName": "GalleryApp.Infrastructure",
-      "projectPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.DataStorage.csproj",
+      "projectName": "GalleryApp.DataStorage",
+      "projectPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\GalleryApp.DataStorage.csproj",
       "packagesPath": "C:\\Users\\Анон\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Анон\\source\\repos\\GalleryApp\\GalleryApp\\GalleryApp.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",

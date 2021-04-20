@@ -76,22 +76,56 @@ namespace GalleryApp.Infrastructure.Repositories
         {
             bool success = true;
 
-            var photoEntityExist = await _context.Photos
-                .AnyAsync(photoEntity => photoEntity.Id == modelForUpdate.Index);
+            var photoEntityExist = await _context.Photos.Include(g => g.Genres)
+                .FirstOrDefaultAsync(photoEntity => photoEntity.Id == modelForUpdate.Index);
 
-            if (!photoEntityExist)
+            if (photoEntityExist == null)
                 success = false;
             else
             {
-                var entityForUpdate = _mapper.Map<PhotoEntity>(modelForUpdate);
+                photoEntityExist.Title = modelForUpdate.Title;
+                var entityForUpdate = _mapper.Map<PhotoEntity>(photoEntityExist);
                 var photo = _context.Photos.Update(entityForUpdate).Entity;
                 await _context.SaveChangesAsync();
 
-                photo.Genres = _context.Genres
-                    .Where(genre => genresId.Contains(genre.Id)).ToList();
-                _context.Update(photo);
-                //await _context.SaveChangesAsync();
-                _context.SaveChanges();
+                // photo.Genres = _context.Genres
+                //    .Where(genre => genresId.Contains(genre.Id)).ToList();
+                //_context.Update(photo);
+                var existGenres = await _context.Photos
+                    .Where(p => p.Id == modelForUpdate.Index)
+                    .SelectMany(g => g.Genres).Select(g => g.Id).ToListAsync();
+
+                foreach (var genre in _context.Genres)
+                {
+                    if (genresId.Contains(genre.Id))
+                    {
+                        if (!existGenres.Contains(genre.Id))
+                        {
+                            photo.Genres.Add(genre);
+                        }
+                    }
+                    else
+                    {
+                        if (existGenres.Contains(genre.Id))
+                        {
+                            //var genreToRemove = existGenres.Select(g => g == genre.Id);
+                            var genreEntityToRemove = _mapper.Map<GenreEntity>(genre);
+                            photo.Genres.Remove(genreEntityToRemove);
+                        }
+                    }
+                }
+
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    string typeString = ex.GetType().FullName;
+                    throw;
+                }
+                //_context.SaveChanges();
                 //_context.Photos.Update(entityForUpdate);
                 //await _context.SaveChangesAsync();
             }

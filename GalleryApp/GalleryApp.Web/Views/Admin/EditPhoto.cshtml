@@ -22,15 +22,16 @@
                         <label asp-for="@Model.Genres" class="control-label"></label>
                         @foreach (var genre in (ViewBag.Genres as IEnumerable<GalleryApp.Domain.Models.Genre>))
                         {
-                                @if ((ViewBag.GenresSelected as IEnumerable<int>).Contains(genre.Index))
-                                {
-                                    <p><input type="checkbox" name="GenresId" value="@genre.Index" checked="checked" /> @genre.Name</p>
-                                }
-                                else
-                                {
-                                    <p><input type="checkbox" name="GenresId" value="@genre.Index" /> @genre.Name</p>
-                                }
+                            @if ((ViewBag.GenresSelected as IEnumerable<int>).Contains(genre.Index))
+                            {
+                                <p><input type="checkbox" name="GenresId" value="@genre.Index" checked="checked" /> @genre.Name</p>
+                            }
+                            else
+                            {
+                                <p><input type="checkbox" name="GenresId" value="@genre.Index" /> @genre.Name</p>
+                            }
                         }
+                        <input type="hidden" asp-for="Genres" />
                         <span asp-validation-for="Genres" class="text-danger"></span>
                     </div>
                 </div>

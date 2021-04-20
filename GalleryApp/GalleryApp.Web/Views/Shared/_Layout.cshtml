@@ -43,13 +43,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="nav navbar-nav navbar-right" >
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="Index">Admin.</a>
-                        </li>
+                    <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home.</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="Index">Dashboard.</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Logout">LogOut.</a>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>

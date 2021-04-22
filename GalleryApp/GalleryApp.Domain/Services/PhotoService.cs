@@ -44,7 +44,7 @@ namespace GalleryApp.Domain.Services
             {
                 await uploadedFile.CopyToAsync(fileStream);
 
-                GetThumbnail(image, thumbnailsPath);
+                await GetThumbnail(image, thumbnailsPath);
             }
 
             modelForUploading.Name = uniqueFileName;
@@ -52,7 +52,7 @@ namespace GalleryApp.Domain.Services
             return modelForUploading;
         }
 
-        private async void GetThumbnail(SixLabors.ImageSharp.Image image, string thumbnailsPath)
+        private async Task GetThumbnail(SixLabors.ImageSharp.Image image, string thumbnailsPath)
         {
             int line = image.Height < image.Width ? image.Height : image.Width;
 

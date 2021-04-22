@@ -13,12 +13,10 @@ namespace GalleryApp.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IPhotoRepository _repository;
 
-        public HomeController(ILogger<HomeController> logger, IPhotoRepository repository)
+        public HomeController(IPhotoRepository repository)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 

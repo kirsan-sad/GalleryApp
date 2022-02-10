@@ -19,8 +19,9 @@ namespace GalleryApp.Infrastructure
             IConfigurationRoot config = builder.Build();
 
             // получаем строку подключения из файла appsettings.json
-            string connectionString = config.GetConnectionString("TestConnection");
+            string connectionString = config.GetConnectionString("DefaultConnection");
             optionsBuilder.UseSqlServer(connectionString, opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds));
+            optionsBuilder.LogTo(System.Console.WriteLine);
             return new GalleryContext(optionsBuilder.Options);
         }
     }

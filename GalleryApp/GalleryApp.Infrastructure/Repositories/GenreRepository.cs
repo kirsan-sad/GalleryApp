@@ -77,11 +77,15 @@ namespace GalleryApp.Infrastructure.Repositories
 
             var genreEntityExist = await _context.Genres
                 .AsNoTracking()
+                .Include(p => p.Photos)
                 .FirstOrDefaultAsync(genreEntity => genreEntity.Id == id);
 
-            genreEntityExist = genreEntityExist ?? throw new ArgumentNullException(nameof(genreEntityExist));
-
-            result = _mapper.Map<Genre>(genreEntityExist);
+            if (genreEntityExist == null)
+                return null;
+            else
+            {
+                result = _mapper.Map<Genre>(genreEntityExist);
+            }
 
             return result;
         }

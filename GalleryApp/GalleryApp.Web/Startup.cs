@@ -16,6 +16,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using GalleryApp.Web.Models;
+using System.Text;
 
 namespace GalleryApp.Web
 {
@@ -45,6 +49,24 @@ namespace GalleryApp.Web
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                     options.ExpireTimeSpan = TimeSpan.FromSeconds(3000);
                 });
+
+            services.Configure<AuthOptions>(Configuration.GetSection("Auth"));
+            var IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetSection("Auth:Secret").Value));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.RequireHttpsMetadata = false;
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidIssuer = Configuration.GetSection("Auth:Issuer").Value,
+                            ValidateAudience = true,
+                            ValidAudience = Configuration.GetSection("Auth:Audience").Value,
+                            ValidateLifetime = true,
+                            IssuerSigningKey = IssuerSigningKey,
+                            ValidateIssuerSigningKey = true,
+                        };
+                    });
             services.AddControllersWithViews();
             services.AddControllers();
             services.AddCors();

@@ -4,6 +4,7 @@ using GalleryApp.Domain.Models;
 using GalleryApp.Infrastructure;
 using GalleryApp.Infrastructure.Entities;
 using GalleryApp.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,7 @@ namespace GalleryApp.Web.Api
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PhotosController : ControllerBase
     {
         private readonly IPhotoRepository _repository;
@@ -35,6 +37,7 @@ namespace GalleryApp.Web.Api
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get()
         {
             var photosQuery = from Photo in _context.Photos
@@ -55,6 +58,7 @@ namespace GalleryApp.Web.Api
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(int id)
         {
             var photoQuery = from Photo in _context.Photos

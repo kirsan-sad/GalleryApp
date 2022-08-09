@@ -4,6 +4,7 @@ using GalleryApp.Domain.Models;
 using GalleryApp.Infrastructure;
 using GalleryApp.Infrastructure.Entities;
 using GalleryApp.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace GalleryApp.Web.Api
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class GenresController : ControllerBase
     {
         private readonly IGenreRepository _repository;
@@ -31,6 +33,7 @@ namespace GalleryApp.Web.Api
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get([FromQuery] QueryStringParameters parameters)
         {
             var genresQuery = from Genre in _context.Genres
@@ -62,6 +65,7 @@ namespace GalleryApp.Web.Api
             return Ok(genres1);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
